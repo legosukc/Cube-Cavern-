@@ -6,7 +6,7 @@ wanted to name this repo "Cube Cavern Cum Engine" but like, for once in my life,
 haha im sooo funny like
 
 also wanted to name this "the real c++" as reference to the misleading c++ cube cavern engine on roblox (i originally thought it was some kinda c++ interpreter on roblox when i first saw it)
-now that i mentioned it, the code structure is inspired by the cube cavern+ engine (which is c++, kinda confusing)
+now that i mentioned it, the code structure is inspired by the cube cavern+ engine (i refer c++ as cube cavern+)
 
 Written in C++, using SDL2 and OpenGL, GLAD as the OpenGL function loader.
 
