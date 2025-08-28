@@ -21,6 +21,8 @@ fr tho you're probably better off using one of the CC engines on roblox.
 - lua support
 - literally everything oh my goddddd.
 
+- ![alt text](https://github.com/legosukc/Cube-Cavern-/blob/master/awesomesauce/ohmygodbruh.jpg?raw=true)
+
 ## [Building]
 
 pooshit
