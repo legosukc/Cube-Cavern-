@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\FunctionHeaders">
+      <UniqueIdentifier>{707e135e-0b2e-4276-af35-5d86e93494c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LuauClasses">
+      <UniqueIdentifier>{d8e2766c-a64f-4c4d-9bfa-f2ef313a9d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OtherClasses">
+      <UniqueIdentifier>{ffb9d4cf-10c8-4f7d-9429-a05aff3172a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameClasses">
+      <UniqueIdentifier>{58815262-861a-47a2-a869-aa0c40465023}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SDLClasses">
+      <UniqueIdentifier>{d5774539-60a0-47ee-a191-4fa1dac7bde2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects">
+      <UniqueIdentifier>{b2c55903-dfe5-4288-b3ea-a03505e9544c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\Quad">
+      <UniqueIdentifier>{89421dbb-6318-49c6-beb7-00e6bafabeb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\Doomspire">
+      <UniqueIdentifier>{c931ed04-a4f6-44c2-b682-1790dc82d757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\ViewArm">
+      <UniqueIdentifier>{0f34495c-79f8-4c28-b0e6-68e015bb2851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\UniformBuffers">
+      <UniqueIdentifier>{c493a692-0313-470a-9aa8-9005b05e4d61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures">
+      <UniqueIdentifier>{3059bda0-7773-476a-a39c-7c8fe403c6c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ItemClasses">
+      <UniqueIdentifier>{12fe1dc1-9ca4-4a8a-87ae-639a4f8b6492}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enums">
+      <UniqueIdentifier>{8c760889-15b1-4067-b439-c11fb4255cf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\Dagger">
+      <UniqueIdentifier>{cd9c415f-b3bf-41a7-819b-db1cacf1b73a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OpenGLObjects.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherClasses\GLClasses.hpp">
+      <Filter>Header Files\OtherClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ObjectBase.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Quad.hpp">
+      <Filter>Header Files\OpenGLObjects\Quad</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLClasses\InputHandler.hpp">
+      <Filter>Header Files\SDLClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLClasses\Window.hpp">
+      <Filter>Header Files\SDLClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuauClasses\Vector3.hpp">
+      <Filter>Header Files\LuauClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuauClasses\BindableEvent.hpp">
+      <Filter>Header Files\LuauClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuauClasses\CFrame.hpp">
+      <Filter>Header Files\LuauClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuauClasses\Vector2.hpp">
+      <Filter>Header Files\LuauClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="file.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionHeaders\AppendCstring.hpp">
+      <Filter>Header Files\FunctionHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClasses\Player.hpp">
+      <Filter>Header Files\GameClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionHeaders\RenderingFunctions.hpp">
+      <Filter>Header Files\FunctionHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionHeaders\Maths.hpp">
+      <Filter>Header Files\FunctionHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="4x4Matrix.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\doomspire.hpp">
+      <Filter>Header Files\OpenGLObjects\Doomspire</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherClasses\SmartPointer.hpp">
+      <Filter>Header Files\OtherClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="IntTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ViewArmRight.hpp">
+      <Filter>Header Files\OpenGLObjects\ViewArm</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionHeaders\Error.hpp">
+      <Filter>Header Files\FunctionHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\UniformBuffers\WindowSize.hpp">
+      <Filter>Header Files\OpenGLObjects\UniformBuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClasses\ObjectManager.hpp">
+      <Filter>Header Files\GameClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformBufferBindingIndexes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\UniformBuffers\RenderingMatrices.hpp">
+      <Filter>Header Files\OpenGLObjects\UniformBuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="LuauClasses\task.hpp">
+      <Filter>Header Files\LuauClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClasses\TextureManager.hpp">
+      <Filter>Header Files\GameClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\Dagger.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\NoWeapon.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\ItemBase.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\ItemTypeEnums.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClasses\Items.hpp">
+      <Filter>Header Files\GameClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Dagger.hpp">
+      <Filter>Header Files\OpenGLObjects\Dagger</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Release\shaders\quad.vert">
+      <Filter>Header Files\OpenGLObjects\Quad</Filter>
+    </None>
+    <None Include="Release\shaders\quad.frag">
+      <Filter>Header Files\OpenGLObjects\Quad</Filter>
+    </None>
+    <None Include="Release\shaders\doomspire.frag">
+      <Filter>Header Files\OpenGLObjects\Doomspire</Filter>
+    </None>
+    <None Include="Release\shaders\doomspire.vert">
+      <Filter>Header Files\OpenGLObjects\Doomspire</Filter>
+    </None>
+    <None Include="Release\shaders\ViewArm.frag">
+      <Filter>Header Files\OpenGLObjects\ViewArm</Filter>
+    </None>
+    <None Include="Release\shaders\ViewArm.vert">
+      <Filter>Header Files\OpenGLObjects\ViewArm</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Release\textures\missing.bmp">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="Release\textures\viewarm_palette.bmp">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="Release\textures\test.bmp">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
