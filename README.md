@@ -1,4 +1,4 @@
-# oh my god bruh another fuckin cube cavern engine dude. -you
+# wow another fuckin cube cavern engine just what we needed dude. -you
 
 brought to you by the mr washee washees cube cavern guy (yeah i'm, pretty much famous, you must already know me.)
 
@@ -35,7 +35,36 @@ pooshit
 
 too lazy to write somethin here
 
-you're on your own (shouldn't be too hard to figure out.)
-
-\n\n\n\
+you're on your own (shouldn't be too hard to figure out.)\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
 god damn i need a footjob
