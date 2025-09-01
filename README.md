@@ -35,6 +35,9 @@ welcome to inheritance hell.
 
 ## [Building]
 
+uhh yeah go get SDL2 from 'ere: https://www.libsdl.org
+glad from here: 
+
 pooshit
 
 too lazy to write somethin here
