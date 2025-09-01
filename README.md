@@ -27,6 +27,8 @@ welcome to inheritance hell.
 
 - kill myself (POSTPONED)
 - lua support
+- lil enemy guys
+- interactables
 - literally everything oh my goddddd.
 
 - ![alt text](https://github.com/legosukc/Cube-Cavern-/blob/master/awesomesauce/ohmygodbruh.jpg?raw=true)
