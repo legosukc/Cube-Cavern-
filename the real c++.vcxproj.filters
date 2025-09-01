@@ -31,9 +31,6 @@
     <Filter Include="Header Files\OpenGLObjects">
       <UniqueIdentifier>{b2c55903-dfe5-4288-b3ea-a03505e9544c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\OpenGLObjects\Quad">
-      <UniqueIdentifier>{89421dbb-6318-49c6-beb7-00e6bafabeb9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\OpenGLObjects\Doomspire">
       <UniqueIdentifier>{c931ed04-a4f6-44c2-b682-1790dc82d757}</UniqueIdentifier>
     </Filter>
@@ -54,6 +51,9 @@
     </Filter>
     <Filter Include="Header Files\OpenGLObjects\Dagger">
       <UniqueIdentifier>{cd9c415f-b3bf-41a7-819b-db1cacf1b73a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\Quad">
+      <UniqueIdentifier>{89421dbb-6318-49c6-beb7-00e6bafabeb9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +160,18 @@
     </ClInclude>
     <ClInclude Include="OpenGLObjects\Dagger.hpp">
       <Filter>Header Files\OpenGLObjects\Dagger</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\ItemClasses.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ModelBase.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ViewModelObjectBase.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ViewModelItemBase.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

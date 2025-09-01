@@ -38,6 +38,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PreferredToolArchitecture>x86</PreferredToolArchitecture>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -178,6 +179,7 @@
     <ClInclude Include="GameClasses\Player.hpp" />
     <ClInclude Include="ItemClasses\Dagger.hpp" />
     <ClInclude Include="ItemClasses\ItemBase.hpp" />
+    <ClInclude Include="ItemClasses\ItemClasses.hpp" />
     <ClInclude Include="ItemClasses\NoWeapon.hpp" />
     <ClInclude Include="LuauClasses\BindableEvent.hpp" />
     <ClInclude Include="LuauClasses\CFrame.hpp" />
@@ -187,11 +189,14 @@
     <ClInclude Include="OpenGLObjects.hpp" />
     <ClInclude Include="OpenGLObjects\Dagger.hpp" />
     <ClInclude Include="OpenGLObjects\doomspire.hpp" />
+    <ClInclude Include="OpenGLObjects\ModelBase.hpp" />
     <ClInclude Include="OpenGLObjects\ObjectBase.hpp" />
     <ClInclude Include="OpenGLObjects\Quad.hpp" />
     <ClInclude Include="OpenGLObjects\UniformBuffers\RenderingMatrices.hpp" />
     <ClInclude Include="OpenGLObjects\UniformBuffers\WindowSize.hpp" />
     <ClInclude Include="OpenGLObjects\ViewArmRight.hpp" />
+    <ClInclude Include="OpenGLObjects\ViewModelItemBase.hpp" />
+    <ClInclude Include="OpenGLObjects\ViewModelObjectBase.hpp" />
     <ClInclude Include="OtherClasses\GLClasses.hpp" />
     <ClInclude Include="OtherClasses\SmartPointer.hpp" />
     <ClInclude Include="SDLClasses\InputHandler.hpp" />

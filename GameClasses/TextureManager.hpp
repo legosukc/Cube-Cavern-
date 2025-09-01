@@ -1,5 +1,5 @@
-//#ifndef _TEXTUREMANAGER_HEADER
-//#define _TEXTUREMANAGER_HEADER
+#ifndef _TEXTUREMANAGER_HEADER
+#define _TEXTUREMANAGER_HEADER
 
 #include <map>
 
@@ -51,4 +51,4 @@ namespace GameClasses::TextureManager {
 	}
 }
 
-//#endif
+#endif

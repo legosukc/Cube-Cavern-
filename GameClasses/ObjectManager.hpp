@@ -9,7 +9,7 @@ namespace GameClasses {
 
 	class ObjectManager {
 
-		std::vector<OpenGLObjects::ObjectBase<void>*> Objects;
+		std::vector<OpenGLObjects::ObjectBase*> Objects;
 
 	public:
 		~ObjectManager() {
@@ -19,23 +19,20 @@ namespace GameClasses {
 				if (Object == nullptr)
 					continue;
 
-				if (Object->Deconstructor == nullptr)
-					continue;
-
-				Object->Deconstructor(Object);
+				Object->Deconstructor();
 				Object = nullptr;
 			}
 		}
 
-		template <class ObjectClass = OpenGLObjects::ObjectBase<void>>
+		template <class ObjectClass = OpenGLObjects::ObjectBase>
 		inline ObjectClass* AddObject(ObjectClass* Object) {
-			this->Objects.push_back(reinterpret_cast<OpenGLObjects::ObjectBase<void>*>(Object));
+			this->Objects.push_back(reinterpret_cast<OpenGLObjects::ObjectBase*>(Object));
 			return Object;
 		}
 
 		template <class ObjectClass>
 		inline ObjectClass* AddObject() {
-			return this->AddObject(new ObjectClass());
+			return this->AddObject<ObjectClass>(new ObjectClass());
 		}
 
 		inline void* AddObject(void* Object) {
@@ -49,6 +46,7 @@ namespace GameClasses {
 			for (auto& Object : this->Objects) {
 
 				if (Object == RemovingObject) {
+					delete Object;
 					Object = nullptr;
 					return true;
 				}
@@ -64,10 +62,7 @@ namespace GameClasses {
 				if (Object == nullptr)
 					continue;
 
-				if (Object->Draw == nullptr)
-					continue;
-
-				Object->Draw(Object);
+				Object->Draw();
 			}
 		}
 
@@ -78,10 +73,7 @@ namespace GameClasses {
 				if (Object == nullptr)
 					continue;
 
-				if (Object->Update == nullptr)
-					continue;
-
-				Object->Update(Object);
+				Object->Update();
 			}
 		}
 	};

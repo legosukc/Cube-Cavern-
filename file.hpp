@@ -433,37 +433,4 @@ namespace file {
 			Texcoords.push_back(Vertices[i].Texcoord);
 		}
 	}
-
-	template <class ObjectType = OpenGLObjects::ModelBase<>>
-	void loadOBJIntoOpenGLObject(const char* OBJName, ObjectType* Object) {
-
-		Object->VAO.Bind();
-		Object->VBO.Bind();
-		Object->EBO.Bind();
-
-		std::vector<LuauClasses::Vector3> Positions;
-		std::vector<LuauClasses::Vector3> Normals;
-		std::vector<LuauClasses::Vector2> Texcoords;
-
-		std::vector<unsigned int> Indices;
-		file::loadOBJ(OBJName, Positions, Normals, Texcoords, Indices);
-
-		Object->VAO.StrideSize = sizeof(float) * 8;
-
-		Object->IndicesLen = Indices.size();
-
-		Object->VBO.AllocateBytes((Positions.size() * sizeof(LuauClasses::Vector3)) + (Normals.size() * sizeof(LuauClasses::Vector3)) + (Texcoords.size() * sizeof(LuauClasses::Vector2)), GL_STATIC_DRAW);
-
-		Object->VBO.BindSubDataPointerWithSize(Positions.data(),	Positions.size() * sizeof(LuauClasses::Vector3),	0);
-		Object->VBO.BindSubDataPointerWithSize(Normals.data(),		Normals.size() * sizeof(LuauClasses::Vector3),		Positions.size() * sizeof(LuauClasses::Vector3));
-		Object->VBO.BindSubDataPointerWithSize(Texcoords.data(),	Texcoords.size() * sizeof(LuauClasses::Vector2),	(Positions.size() * sizeof(LuauClasses::Vector3)) + (Normals.size() * sizeof(LuauClasses::Vector3)));
-
-		Object->EBO.BindDataPointerWithSize(Indices.data(), Object->IndicesLen * sizeof(unsigned int), GL_STATIC_DRAW);
-
-		Object->VAO.AppendSubAttribute<GL_FLOAT>(3, Positions.size() * sizeof(LuauClasses::Vector3));	// Position
-		Object->VAO.AppendSubAttribute<GL_FLOAT>(3, Normals.size() * sizeof(LuauClasses::Vector3));		// Normal
-		Object->VAO.AppendSubAttribute<GL_FLOAT>(2, Texcoords.size() * sizeof(LuauClasses::Vector2));	// Texcoord
-
-		Object->VAO.Unbind();
-	}
 }

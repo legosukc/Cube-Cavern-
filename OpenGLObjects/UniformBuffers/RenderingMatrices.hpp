@@ -28,7 +28,7 @@ namespace UniformBuffers {
 
         static void UpdateProjection(void* Connector, SDLClasses::Window* Window) {
 
-            const UniformBuffers::RenderingMatrices* self = (UniformBuffers::RenderingMatrices*)Connector;
+            const UniformBuffers::RenderingMatrices* self = reinterpret_cast<UniformBuffers::RenderingMatrices*>(Connector);
 
             self->Bind();
 

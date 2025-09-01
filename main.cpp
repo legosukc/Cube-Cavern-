@@ -49,6 +49,8 @@
 
 #include "file.hpp"
 
+#include "ItemClasses/ItemClasses.hpp"
+
 int _cdecl main() {
 
     // Initialize SDL
@@ -77,17 +79,25 @@ int _cdecl main() {
     // OBJECTS
 
     GameClasses::Player Player(&Window.Delta60);
+    Player.AddItemToInventory<ItemClasses::Dagger>();
+
+    std::cout << Player.Items[0]->Name << '\n';
 
 
     // RENDERING OBJECTS
 
+    GameClasses::ObjectManager ViewModelManager;
+
+    OpenGLObjects::ViewArmRight* ViewArmRight = ViewModelManager.AddObject(new OpenGLObjects::ViewArmRight(&Player));
+    ViewModelManager.AddObject(new OpenGLObjects::Dagger(ViewArmRight));
+
+
     GameClasses::ObjectManager ObjectManager;
 
-    OpenGLObjects::ViewArmRight* ViewArmRight = ObjectManager.AddObject(new OpenGLObjects::ViewArmRight(&Player));
     ObjectManager.AddObject<OpenGLObjects::Doomspire>();
     
 
-    //GLClasses::UniformBuffer RenderingMatrices(sizeof(glm::mat4) * 2, UniformBufferBindings::RenderingMatrices, GL_DYNAMIC_DRAW);
+    // UNIFORM BUFFERS
 
     UniformBuffers::RenderingMatrices RenderingMatrices(&Player);
     RenderingMatrices.UpdateProjection(&RenderingMatrices, &Window);
@@ -99,6 +109,8 @@ int _cdecl main() {
 
     glEnable(GL_STENCIL_TEST);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+
 
     std::cout << "running\n";
 
@@ -113,14 +125,16 @@ int _cdecl main() {
 
         RenderingMatrices.UpdateView();
 
+        ViewModelManager.UpdateObjects();
         ObjectManager.UpdateObjects();
 
         // Rendering
 
-        glClearColor(0, 0, 0, 0);
+        glClearColor(0.f, 0.f, 0.f, 0.f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
         //QuadObject.Draw();
+        ViewModelManager.DrawObjects();
         ObjectManager.DrawObjects();
 
         Window.RenderUpdateWindow();
@@ -129,7 +143,7 @@ int _cdecl main() {
     //SDL_SetWindowGrab(Window.SDLWindow, SDL_FALSE);
 
     // Clean up
-
+    IMG_Quit();
     SDL_Quit();
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -7,4 +7,6 @@
 
 #include "OpenGLObjects/ViewArmRight.hpp"
 
+#include "OpenGLObjects/Dagger.hpp"
+
 #endif

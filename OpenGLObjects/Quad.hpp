@@ -1,9 +1,9 @@
 #ifndef _OPENGLOBJECTS_QUAD
 #define _OPENGLOBJECTS_QUAD
 
-#include "OtherClasses/GLClasses.hpp"
+#include "./OtherClasses/GLClasses.hpp"
 
-#include "OpenGLObjects/ObjectBase.hpp"
+#include "./OpenGLObjects/ObjectBase.hpp"
 
 const float quadVert[] = {
     // positions   // texCoords
@@ -20,22 +20,9 @@ const Uint8 quadIndices[] = {
 
 namespace OpenGLObjects {
 
-    class Quad : public OpenGLObjects::ObjectBase<Quad> {
-        
-        static void _Draw(Quad* self) {
-            self->VAO.Bind();
-            self->Program.Use();
-
-            glDrawElements(GL_TRIANGLES, sizeof(quadIndices), GL_UNSIGNED_BYTE, 0);
-
-            self->VAO.Unbind();
-        }
-
+    class Quad : public OpenGLObjects::ObjectBase {
     public:
         Quad() {
-
-            this->Draw = this->_Draw;
-
             this->VAO.Bind();
             this->VBO.Bind();
             this->EBO.Bind();
@@ -63,6 +50,15 @@ namespace OpenGLObjects {
 
             this->Program.SetTextureBinding("RenderTexture", 0);
         };
+
+        void Draw() {
+            this->VAO.Bind();
+            this->Program.Use();
+
+            glDrawElements(GL_TRIANGLES, sizeof(quadIndices), GL_UNSIGNED_BYTE, 0);
+
+            this->VAO.Unbind();
+        }
     };
 }
 

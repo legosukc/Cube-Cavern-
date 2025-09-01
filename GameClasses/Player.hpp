@@ -25,12 +25,14 @@ namespace GameClasses {
 
 		const double* Delta;
 
+		typedef ItemClasses::ItemBase<OpenGLObjects::ObjectBase, Player> InventoryItemType;
+
 	public:
 
 		Player(const double* DeltaTimePtr) {
 			using namespace SDLClasses;
 
-			this->Items.resize(this->InventorySlots);
+			//this->Items.resize(this->InventorySlots);
 
 			this->Delta = DeltaTimePtr;
 
@@ -62,14 +64,28 @@ namespace GameClasses {
 				switch (MouseButtonEvent->button) {
 					case InputHandler::MouseButtonEnums::LeftMouse:
 
-						self->Items[self->HeldItemSlot]->LMB(self->Items[self->HeldItemSlot], self);
-						self->ArmYGoal = 70.f;
+						if (self->OnItemCooldown) {
+							break;
+						}
 
-						const auto ResetArmY = [](Player* self) {
-							self->ArmYGoal = 0.f;
+						InventoryItemType* Item = self->Items.at(self->HeldItemSlot);
+
+						if (Item == nullptr) {
+							std::cout << "no item\n";
+							break;
+						}
+
+						Item->Owner = self;
+
+						self->OnItemCooldown = true;
+
+						Item->LMB();
+
+						const auto ResetItemCooldown = [](GameClasses::Player* self) {
+							self->OnItemCooldown = false;
+							std::cout << "cooldown over\n";
 							};
-
-						LuauClasses::task::CreateDelayedTask<Player*>(ResetArmY, self, 0.38f);
+						LuauClasses::task::CreateDelayedTask<GameClasses::Player*>(ResetItemCooldown, self, Item->Cooldown);
 						break;
 				}
 				};
@@ -98,7 +114,36 @@ namespace GameClasses {
 		size_t InventorySlots = 3;
 
 		size_t HeldItemSlot = 0;
-		std::vector<ItemClasses::ItemBase<>*> Items;
+		bool OnItemCooldown = false;
+		
+		std::vector<InventoryItemType*> Items;
+
+		template<class ItemClass>
+		bool OverwriteInventoryItem(size_t Slot) {
+
+			if (Slot < this->InventorySlots) {
+
+				ItemClass* NewItem = new ItemClass;
+				NewItem->Owner = this;
+
+				// TODO: get item deconstructor
+				try {
+					delete this->Items.at(Slot);
+				} catch (std::out_of_range) {
+					this->Items.resize(Slot + 1);
+				}
+
+				this->Items[Slot] = (InventoryItemType*)NewItem;
+				return true;
+			}
+			
+			return false;
+		}
+
+		template<class ItemClass>
+		inline bool AddItemToInventory() {
+			return this->OverwriteInventoryItem<ItemClass>(this->Items.size());
+		}
 
 		void UpdateDirectionalVectors() {
 			

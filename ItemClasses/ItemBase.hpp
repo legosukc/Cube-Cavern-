@@ -2,11 +2,9 @@
 #define _ITEMCLASSES_ITEMBASE
 
 #include "./Enums/ItemTypeEnums.hpp"
-#include "./OpenGLObjects/ObjectBase.hpp"
+#include "./OpenGLObjects/ModelBase.hpp"
 
 #include "./LuauClasses/Vector3.hpp"
-
-#include "./GameClasses/Player.hpp"
 
 #include <SDL2/SDL_stdinc.h>
 
@@ -14,55 +12,39 @@
 #include <string>
 
 namespace ItemClasses {
-
-	void a() {
-		int a = true ? 0 : 1;
-	}
 	
-	template <class SelfType = void, typename GLObjectType = OpenGLObjects::ModelBase<>>
+	template <typename GLObjectType = OpenGLObjects::ModelBase, typename OwnerType = void>
 	class ItemBase {
+	public:
 
-		static void _Update(SelfType* self);
+		virtual void Update() {}
 
-		static void _LMB(SelfType* self, GameClasses::Player* Player);
-		static void _RMB(SelfType* self, GameClasses::Player* Player);
+		virtual void LMB() {}
+		virtual void RMB() {}
 
-		static const char* _GetHoverText(SelfType* self) {
-			
+		virtual const char* GetHoverText() {
+
 			const char* InteractionText;
-			if (self->MustBePurchased) {
+			if (this->MustBePurchased) {
 				InteractionText = "inspect";
 			} else {
-				InteractionText = (Enums::ItemTypes::Item and self->Type != Enums::ItemTypes::Pickup) ? "wear" : "take";
+				InteractionText = (Enums::ItemTypes::Item and this->Type != Enums::ItemTypes::Pickup) ? "wear" : "take";
 			}
-			
-			return std::format("E to %s %s.", InteractionText, self->Name);
+
+			return std::format("E to %s %s.", InteractionText, this->Name).c_str();
 		}
 
-	public:
-		ItemBase() {
-			this->CreationTime = SDL_GetTicks64();
-		}
-		~ItemBase() {
+		OwnerType* Owner = nullptr;
 
-		}
+		const char* Name = "";
+		const char* Description = "";
+		const char* HoverText = "";
 
-		void(*Update)(SelfType* self) = nullptr;
+		const char* BookEntry = "";
 
-		void(*LMB)(SelfType* self) = nullptr;
-		void(*RMB)(SelfType* self) = nullptr;
+		//Uint32 Thumbnail = 544316911; // TODO: change this
 
-		void(*GetHoverText)(SelfType* self) = nullptr;
-
-		const char* Name = "Item Base";
-		const char* Description = nullptr;
-		const char* HoverText = nullptr;
-
-		const char* BookEntry = nullptr;
-
-		Uint32 Thumbnail = 544316911; // TODO: change this
-
-		const Enums::ItemTypes::ItemTypesEnum Type = Enums::ItemTypes::Item;
+		Enums::ItemTypes::ItemTypesEnum Type = Enums::ItemTypes::Item;
 
 		Uint16 Price = 0;
 		Uint16 Rarity = 0;
@@ -72,23 +54,21 @@ namespace ItemClasses {
 		bool Purchasable = false;
 		bool ShowOnDetector = true;
 
+		bool MustBePurchased = false;
+
 		float Cooldown = 0.f;
 		
 		const char* FloorHitSFX = "FloorHit";
 		float FloorHitSFXSpeed = 1;
 
 		bool Physics = false;
-		Uint64 CreationTime;
 
-		LuauClasses::Vector3 Position;
-		LuauClasses::Vector3 Velocity;
+		LuauClasses::Vector3 Position = LuauClasses::Vector3(0.f);
+		LuauClasses::Vector3 Velocity = LuauClasses::Vector3(0.f);
 
-		LuauClasses::Vector3 Rotation;
+		LuauClasses::Vector3 Rotation = LuauClasses::Vector3(0.f);
 
-		GLObjectType* GLObject;
-
-	private:
-
+		GLObjectType* GLObject = nullptr;
 	};
 }
 
