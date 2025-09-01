@@ -3,6 +3,10 @@
 
 #include "./OtherClasses/GLClasses.hpp"
 
+#include "./LuauClasses/Vector3.hpp"
+
+#include "./FunctionHeaders/RenderingFunctions.hpp"
+
 #include "ViewModelObjectBase.hpp"
 
 #include "ViewArmRight.hpp"
@@ -30,7 +34,7 @@ namespace OpenGLObjects {
 
     protected:
 
-        void ViewModelItemBaseConstructor(const char* ModelFile, const char* PaletteFile, OpenGLObjects::ViewArmRight* ViewArmRight) {
+        inline void ViewModelItemBaseConstructor(const char* ModelFile, const char* PaletteFile, OpenGLObjects::ViewArmRight* ViewArmRight) {
             this->ViewModelObjectBaseConstructor(ModelFile, PaletteFile);
 
             this->ViewArmRight = ViewArmRight;
