@@ -21,6 +21,8 @@ made for fun, you can use this as your own "Cube Cavern" engine, if you really h
 
 fr tho you're probably better off using one of the CC engines on roblox.
 
+welcome to inheritance hell.
+
 ## TODO
 
 - kill myself (POSTPONED)
