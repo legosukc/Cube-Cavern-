@@ -1,6 +1,8 @@
 #ifndef _OPENGL_UNIFORMBUFFERS_RENDERINGMATRICES
 #define _OPENGL_UNIFORMBUFFERS_RENDERINGMATRICES
 
+#include <glm/glm.hpp>
+
 #include "./OtherClasses/GLClasses.hpp"
 
 #include "./FunctionHeaders/RenderingFunctions.hpp"
@@ -10,7 +12,7 @@
 
 #include "./GameClasses/Player.hpp"
 
-#include "./UniformBufferBindingIndexes.hpp"
+#include "./Enums/UniformBufferBindingIndexes.hpp"
 
 namespace UniformBuffers {
 
@@ -21,7 +23,7 @@ namespace UniformBuffers {
     public:
         RenderingMatrices(GameClasses::Player* Player) {
             this->Constructor(NULL, sizeof(glm::mat4) * 2, GL_DYNAMIC_DRAW);
-            this->BindBufferBase(UniformBufferBindings::RenderingMatrices);
+            this->BindBufferBase(Enums::UniformBufferBindings::RenderingMatrices);
 
             this->Player = Player;
         }

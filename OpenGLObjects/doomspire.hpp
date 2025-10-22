@@ -3,25 +3,15 @@
 
 #include <glad/glad.h>
 
-#include "./file.hpp"
-
 /*  OTHER CLASSES   */
 #include "./OtherClasses/GLClasses.hpp"
+
 
 #include "ModelBase.hpp"
 
 
-/*  FUNCTION HEADERS   */
-#include "./FunctionHeaders/RenderingFunctions.hpp"
-#include "./FunctionHeaders/Maths.hpp"
-
-
-/*   LUAU CLASSES   */
-#include "./LuauClasses/Vector3.hpp"
-
-
-/*  OTHER   */
-#include "./UniformBufferBindingIndexes.hpp"
+/*  ENUMS   */
+#include "./Enums/UniformBufferBindingIndexes.hpp"
 
 namespace OpenGLObjects {
 
@@ -37,7 +27,7 @@ namespace OpenGLObjects {
 
             this->Program.LinkProgram();
 
-            this->Program.UniformBlockBinding("RenderingMatrices", UniformBufferBindings::RenderingMatrices);
+            this->Program.UniformBlockBinding("RenderingMatrices", Enums::UniformBufferBindings::RenderingMatrices);
 
             this->Program.Use();
 
@@ -45,15 +35,6 @@ namespace OpenGLObjects {
 
             this->Program.SetTextureBinding("Texture", 0);
         };
-        /*
-        void Draw() {
-            this->VAO.Bind();
-            this->Program.Use();
-
-            glDrawElements(GL_TRIANGLES, this->IndicesLen, GL_UNSIGNED_INT, 0);
-
-            this->VAO.Unbind();
-        }*/
     };
 }
 

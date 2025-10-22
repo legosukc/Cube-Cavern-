@@ -1,45 +1,43 @@
 #ifndef _ITEMCLASSES_DAGGER
 #define _ITEMCLASSES_DAGGER
 
-#include "./Enums/ItemTypeEnums.hpp"
-
-#include "./ItemClasses/ItemBase.hpp"
-
+#include "MeleeWeaponBase.hpp"
 #include "./OpenGLObjects/Dagger.hpp"
 
-#include "./GameClasses/Player.hpp"
+#include <AL/al.h>
+#include "./SDLClasses/Sound.hpp"
 
-#include "./LuauClasses/task.hpp"
+#include "./FunctionHeaders/Random.hpp"
 
 namespace ItemClasses {
 
-	class Dagger : public ItemClasses::ItemBase<OpenGLObjects::Dagger, GameClasses::Player> {
+	class Dagger : public ItemClasses::MeleeWeaponBase<OpenGLObjects::Dagger> {
+
+		SDLClasses::Sound::ALAttached3DSoundObject* Swing;
+
 	public:
 		Dagger() {
 			this->Name = "Dagger";
-			this->Description = "3 damage, pretty fuckin weak.";
+			this->Description = "The sword's little brother, half as long, just as deadly! Deals 3 damage."; //"3 damage, pretty fuckin weak.";
 
-			this->Type = Enums::ItemTypes::Melee;
+			this->BookEntry = "Daggers are obtained by crafting a rock and a stick together. They do 3 damage.";
 
-			this->SwingDuration = 0.25f;
-			this->Cooldown = 0.3f;
-
+			this->Cooldown = 0.4f;
+			this->SwingDuration = 0.14f;
 			this->Damage = 3;
-		}
 
-		float SwingDuration;
-		Uint32 Damage;
+			this->KnockbackAmount = 0.5f;
+
+			this->Swing = new SDLClasses::Sound::ALAttached3DSoundObject("sfx\\Swing.ogg", &this->Position);
+		};
 
 		void LMB() override {
-
+			
 			std::cout << "used dagger\n";
+			MeleeWeaponBase::LMB();
 
-			this->Owner->ArmYGoal = 30.f;
-
-			const auto ResetArmY = [](GameClasses::Player* Owner) {
-				Owner->ArmYGoal = 0.f;
-				};
-			LuauClasses::task::CreateDelayedTask<GameClasses::Player*>(ResetArmY, this->Owner, this->SwingDuration);
+			this->Swing->Source.FloatSetProperty(AL_PITCH, 1.f + Random::xorshiftFloat());
+			this->Swing->Play();
 		}
 	};
 }

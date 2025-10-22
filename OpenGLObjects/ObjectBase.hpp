@@ -7,15 +7,10 @@ namespace OpenGLObjects {
 
 	class ObjectBase {
 	public:
-		~ObjectBase() {
-			std::cout << "called ~ObjectBase\n";
-			this->Deconstructor();
-		}
+		virtual ~ObjectBase();
 
-		virtual void Draw() {}
-		virtual void Update() {}
-
-		virtual void Deconstructor() {}
+		inline virtual void Draw();
+		inline virtual void Update();
 
 		GLClasses::VertexArray VAO;
 		GLClasses::VertexBuffer VBO;

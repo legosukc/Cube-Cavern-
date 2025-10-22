@@ -77,22 +77,24 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <OutDir>$(SolutionDir)\Release\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\clib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\clib\lib32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;glew32.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua54.lib;SDL2.lib;glew32.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;zlib.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -101,7 +103,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\clib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
@@ -113,6 +115,10 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <DebugInformationFormat>None</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,7 +126,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\clib\lib32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;glew32.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua54.lib;SDL2.lib;glew32.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;zlib.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -162,54 +170,160 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ItemClasses\ItemBase.cpp" />
+    <ClCompile Include="ItemClasses\NotPhysicalItemBase.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OpenGLObjects\ColoredModelBase.cpp" />
+    <ClCompile Include="OpenGLObjects\ModelBase.cpp" />
+    <ClCompile Include="OpenGLObjects\ObjectBase.cpp" />
+    <ClCompile Include="OpenGLObjects\ParentedColoredModelBase.cpp" />
+    <ClCompile Include="OpenGLObjects\TexturedModelBase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="4x4Matrix.hpp" />
+    <ClInclude Include="Enums\Enums.hpp" />
     <ClInclude Include="Enums\ItemTypeEnums.hpp" />
+    <ClInclude Include="Enums\UniformBufferBindingIndexes.hpp" />
     <ClInclude Include="FunctionHeaders\Error.hpp" />
-    <ClInclude Include="GameClasses\Items.hpp" />
-    <ClInclude Include="GameClasses\ObjectManager.hpp" />
-    <ClInclude Include="GameClasses\TextureManager.hpp" />
+    <ClInclude Include="FunctionHeaders\Random.hpp" />
+    <ClInclude Include="GameClasses\Items.hpp">
+      <FileType>CppHeader</FileType>
+    </ClInclude>
+    <ClInclude Include="GameClasses\ObjectManager.hpp">
+      <FileType>CppHeader</FileType>
+    </ClInclude>
+    <ClInclude Include="GameClasses\TextureManager.hpp">
+      <FileType>CppHeader</FileType>
+    </ClInclude>
     <ClInclude Include="IntTypes.h" />
     <ClInclude Include="file.hpp" />
     <ClInclude Include="FunctionHeaders\AppendCstring.hpp" />
     <ClInclude Include="FunctionHeaders\Maths.hpp" />
     <ClInclude Include="FunctionHeaders\RenderingFunctions.hpp" />
-    <ClInclude Include="GameClasses\Player.hpp" />
+    <ClInclude Include="GameClasses\Player.hpp">
+      <FileType>CppHeader</FileType>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\Bottle.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleB.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleC.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleG.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleR.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleY.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ItemClasses\Dagger.hpp" />
+    <ClInclude Include="ItemClasses\Fabric.hpp" />
     <ClInclude Include="ItemClasses\ItemBase.hpp" />
     <ClInclude Include="ItemClasses\ItemClasses.hpp" />
+    <ClInclude Include="ItemClasses\MeleeWeaponBase.hpp" />
+    <ClInclude Include="ItemClasses\NotPhysicalItemBase.hpp" />
     <ClInclude Include="ItemClasses\NoWeapon.hpp" />
+    <ClInclude Include="ItemClasses\Rock.hpp" />
+    <ClInclude Include="ItemClasses\Rope.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\SoulBottleBase.hpp" />
+    <ClInclude Include="ItemClasses\Stick.hpp" />
+    <ClInclude Include="ItemClasses\WeaponBase.hpp" />
+    <ClInclude Include="LuaClasses\LuaContext.hpp" />
+    <ClInclude Include="LuaClasses\LuaGlobalTable.hpp" />
+    <ClInclude Include="LuaClasses\LuaScript.hpp" />
+    <ClInclude Include="LuaClasses\LuaTable.hpp" />
+    <ClInclude Include="LuaClasses\LuaTableBase.hpp" />
+    <ClInclude Include="LuaDebug.hpp" />
+    <ClInclude Include="LuaLibraries\buffer.hpp" />
+    <ClInclude Include="LuaLibraries\OpenGL.hpp" />
+    <ClInclude Include="LuaTypes.h" />
     <ClInclude Include="LuauClasses\BindableEvent.hpp" />
     <ClInclude Include="LuauClasses\CFrame.hpp" />
     <ClInclude Include="LuauClasses\task.hpp" />
     <ClInclude Include="LuauClasses\Vector2.hpp" />
     <ClInclude Include="LuauClasses\Vector3.hpp" />
-    <ClInclude Include="OpenGLObjects.hpp" />
-    <ClInclude Include="OpenGLObjects\Dagger.hpp" />
+    <ClInclude Include="OpenGLObjects.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Bottle.hpp" />
+    <ClInclude Include="OpenGLObjects\SoulBottle.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\BottleC.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\BottleG.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\BottleR.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\BottleY.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ParentedColoredModelBase.hpp" />
+    <ClInclude Include="OpenGLObjects\ColoredModelBase.hpp" />
+    <ClInclude Include="OpenGLObjects\Dagger.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="OpenGLObjects\doomspire.hpp" />
+    <ClInclude Include="OpenGLObjects\Fabric.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="OpenGLObjects\ModelBase.hpp" />
     <ClInclude Include="OpenGLObjects\ObjectBase.hpp" />
     <ClInclude Include="OpenGLObjects\Quad.hpp" />
+    <ClInclude Include="OpenGLObjects\Rock.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Rope.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Stick.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\TutorialBubble.hpp" />
     <ClInclude Include="OpenGLObjects\UniformBuffers\RenderingMatrices.hpp" />
     <ClInclude Include="OpenGLObjects\UniformBuffers\WindowSize.hpp" />
-    <ClInclude Include="OpenGLObjects\ViewArmRight.hpp" />
-    <ClInclude Include="OpenGLObjects\ViewModelItemBase.hpp" />
-    <ClInclude Include="OpenGLObjects\ViewModelObjectBase.hpp" />
+    <ClInclude Include="OpenGLObjects\ViewArmRight.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ParentedTexturedModelBase.hpp" />
+    <ClInclude Include="OpenGLObjects\TexturedModelBase.hpp" />
+    <ClInclude Include="OtherClasses\ExpandableArray.hpp" />
     <ClInclude Include="OtherClasses\GLClasses.hpp" />
     <ClInclude Include="OtherClasses\SmartPointer.hpp" />
     <ClInclude Include="SDLClasses\InputHandler.hpp" />
+    <ClInclude Include="SDLClasses\Sound.hpp" />
     <ClInclude Include="SDLClasses\Window.hpp" />
-    <ClInclude Include="UniformBufferBindingIndexes.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Release\Enemies.lua" />
+    <None Include="Release\EnemyClasses\EnemyBase.lua" />
+    <None Include="Release\GameLoop.lua" />
+    <None Include="Release\InteractClasses\InteractableBase.lua" />
+    <None Include="Release\Interaction.lua" />
+    <None Include="Release\ItemClasses\Dagger.lua" />
+    <None Include="Release\ItemClasses\ItemBase.lua" />
+    <None Include="Release\ItemClasses\NoWeapon.lua" />
+    <None Include="Release\ItemClasses\WeaponBase.lua" />
+    <None Include="Release\Items.lua" />
+    <None Include="Release\shaders\ShadedColor.frag" />
+    <None Include="Release\shaders\ShadedColorModel.vert" />
     <None Include="Release\shaders\doomspire.frag" />
     <None Include="Release\shaders\doomspire.vert" />
     <None Include="Release\shaders\quad.frag" />
     <None Include="Release\shaders\quad.vert" />
-    <None Include="Release\shaders\ViewArm.frag" />
-    <None Include="Release\shaders\ViewArm.vert" />
+    <None Include="Release\shaders\ShadedTexture.frag" />
+    <None Include="Release\shaders\ShadedTextureModel.vert" />
+    <None Include="Release\shaders\TutorialBubble.frag" />
+    <None Include="Release\shaders\TutorialBubble.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Release\textures\missing.bmp" />

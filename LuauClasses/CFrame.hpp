@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LUAUCLASSES_CFRAME_H
+#define LUAUCLASSES_CFRAME_H
 
 #include "./LuauClasses/Vector3.hpp"
 
@@ -11,13 +12,14 @@ namespace LuauClasses {
 		CFrame() {
 			this->Position = LuauClasses::Vector3(0.f);
 
-			glm::mat4(1.f)* glm::mat4(1.f);
+			//glm::mat4(1.f) * glm::mat4(1.f);
 
 
 			this->LookVector = LuauClasses::Vector3(0.f);
 			this->RightVector = LuauClasses::Vector3(0.f);
 			this->UpVector = LuauClasses::Vector3(0.f);
 		}
+
 		CFrame(LuauClasses::Vector3 Position) {
 			this->Position = Position;
 
@@ -25,6 +27,7 @@ namespace LuauClasses {
 			this->RightVector = LuauClasses::Vector3(0.f);
 			this->UpVector = LuauClasses::Vector3(0.f);
 		}
+
 		CFrame(float X, float Y, float Z) {
 			this->Position = LuauClasses::Vector3(X, Y, Z);
 
@@ -32,6 +35,7 @@ namespace LuauClasses {
 			this->RightVector = LuauClasses::Vector3(0.f);
 			this->UpVector = LuauClasses::Vector3(0.f);
 		}
+
 		CFrame(float X, float Y, float Z, float R00, float R01, float R02, float R10, float R11, float R12, float R20, float R21, float R22) {
 			this->Position = LuauClasses::Vector3(X, Y, Z);
 
@@ -134,3 +138,5 @@ namespace LuauClasses {
 		return Result;
 	}
 }
+
+#endif

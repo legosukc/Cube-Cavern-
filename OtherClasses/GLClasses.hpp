@@ -5,19 +5,27 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_rwops.h>
+#include <SDL2/SDL_stdinc.h>
+#include <SDL2/SDL_surface.h>
 
-#include "FunctionHeaders/AppendCstring.hpp"
-#include "OtherClasses/SmartPointer.hpp"
+#include "./FunctionHeaders/AppendCstring.hpp"
+#include "./OtherClasses/SmartPointer.hpp"
+
+#include "./LuauClasses/Vector3.hpp"
+#include "./LuauClasses/Vector2.hpp"
 
 #include <iostream>
 
 #include <glm/glm.hpp>
 #include <glm/fwd.hpp>
+
+#include <map>
 #include <memory>
 
 namespace GLClasses {
 
-    constexpr static size_t sizeofGLType(GLenum GLType) {
+    constexpr size_t sizeofGLType(GLenum GLType) {
         switch (GLType) {
 
             case GL_BYTE:
@@ -41,6 +49,7 @@ namespace GLClasses {
             case GL_DOUBLE:
                 return sizeof(GLdouble);
         }
+        return 0;
     }
 
     class Texture {
@@ -444,8 +453,9 @@ namespace GLClasses {
             this->ShaderObject = glCreateShader(ShaderType);
 
             {
-                const OtherClasses::SmartPointer ShaderPath = AppendCstring::AppendCstring("shaders\\", ShaderName);
-                char* ShaderSource = reinterpret_cast<char*>(SDL_LoadFile(ShaderPath, NULL));
+                char* ShaderPath = AppendCstring::AppendCstring("shaders\\", ShaderName);
+                char* ShaderSource = (char*)SDL_LoadFile(ShaderPath, NULL);
+                delete[] ShaderPath;
 
                 glShaderSource(this->ShaderObject, 1, &ShaderSource, NULL);
                 SDL_free(ShaderSource);
@@ -461,7 +471,7 @@ namespace GLClasses {
                 GLchar* errorLog = new GLchar[maxLength];
                 glGetShaderInfoLog(this->ShaderObject, maxLength, &maxLength, &errorLog[0]);
 
-                std::cout << errorLog << '\n' << '\n';
+                std::cerr << errorLog << '\n' << std::endl;
                 delete[] errorLog;
 
                 this->~Shader();
@@ -548,6 +558,15 @@ namespace GLClasses {
         }
 
 
+        static SDL_FORCE_INLINE void Vec3SetUniform(GLint UniformID, const LuauClasses::Vector3& SetTo) {
+            glUniform3fv(UniformID, 1, &SetTo[0]);
+        }
+        SDL_FORCE_INLINE void Vec3SetUniform(const char* UniformName, const LuauClasses::Vector3& SetTo) {
+            this->Vec3SetUniform(this->GetUniformLocation(UniformName), SetTo);
+            //glUniform3fv(this->GetUniformLocation(UniformName), 1, &SetTo[0]);
+        }
+
+
         static SDL_FORCE_INLINE void Mat4SetUniform(GLint UniformID, const glm::mat4& SetTo) {
             glUniformMatrix4fv(UniformID, 1, GL_FALSE, &SetTo[0][0]);
         }
@@ -617,6 +636,27 @@ namespace GLClasses {
             this->AttachShader(ShaderObject.ShaderObject);
         }
     };
+
+    typedef OtherClasses::SharedPointer<Program, 1> SharedProgramPointer;
+
+    std::map<const char*, SharedProgramPointer> SharedPrograms;
+    auto GetSharedProgram(const char* ProgramName) {
+
+        struct {
+            SharedProgramPointer Program;
+            bool IsNewProgram;
+        } ReturnStruct;
+
+        ReturnStruct.IsNewProgram = !SharedPrograms.contains(ProgramName);
+
+        if (ReturnStruct.IsNewProgram) {
+            SharedPrograms.insert({ ProgramName, SharedProgramPointer() });
+        }
+
+        ReturnStruct.Program = SharedPrograms[ProgramName];
+
+        return ReturnStruct;
+    }
 }
 
 #endif

@@ -1,15 +1,16 @@
 #ifndef _TEXTUREMANAGER_HEADER
 #define _TEXTUREMANAGER_HEADER
 
-#include <map>
-
+#include <glad/glad.h>
 #include "./OtherClasses/GLClasses.hpp"
+
+#include <map>
 
 static std::map<const char*, GLClasses::Texture*> Textures;
 
 namespace GameClasses::TextureManager {
 
-	inline GLClasses::Texture* RegisterTexture(const char* RegisterName, GLClasses::Texture* Texture) {
+	GLClasses::Texture* RegisterTexture(const char* RegisterName, GLClasses::Texture* Texture) {
 		return Textures.insert({ RegisterName, Texture }).first->second;
 	}
 
@@ -35,7 +36,7 @@ namespace GameClasses::TextureManager {
 	bool RemoveTexture(const GLClasses::Texture* Texture) {
 
 		for (auto& Element : Textures) {
-			
+
 			if (Element.second->TextureObject == Texture->TextureObject) {
 				RemoveTexture(Element.second);
 				return true;
@@ -45,7 +46,7 @@ namespace GameClasses::TextureManager {
 		return false;
 	}
 
-	inline void RemoveTexture(const char* const TextureName) {
+	void RemoveTexture(const char* TextureName) {
 		delete Textures[TextureName];
 		Textures.erase(TextureName);
 	}

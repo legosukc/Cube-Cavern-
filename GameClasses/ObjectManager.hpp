@@ -2,8 +2,9 @@
 #define _OBJECTMANAGER_HEADER
 
 #include <vector>
+#include <map>
 
-#include "OpenGLObjects/ObjectBase.hpp"
+#include "./OpenGLObjects/ObjectBase.hpp"
 
 namespace GameClasses {
 
@@ -19,7 +20,7 @@ namespace GameClasses {
 				if (Object == nullptr)
 					continue;
 
-				Object->Deconstructor();
+				delete Object;
 				Object = nullptr;
 			}
 		}

@@ -320,6 +320,7 @@ namespace file {
 		std::string curline;
 
 		while (std::getline(file, curline)) {
+
 		#ifdef OBJL_CONSOLE_OUTPUT
 			if ((outputIndicator = ((outputIndicator + 1) % outputEveryNth)) == 0) {
 				std::cout
@@ -347,7 +348,7 @@ namespace file {
 						}
 					}
 				#ifdef OBJL_CONSOLE_OUTPUT
-					std::cout << std::endl;
+					std::cout << '\n';
 					outputIndicator = 0;
 				#endif
 					break;
@@ -421,9 +422,10 @@ namespace file {
 	}
 
 
-	void loadOBJ(const char* filePath, std::vector<LuauClasses::Vector3>& Positions, std::vector<LuauClasses::Vector3>& Normals, std::vector<LuauClasses::Vector2>& Texcoords, std::vector<unsigned int>& Indices) {
+	void* loadOBJ(const char* filePath, std::vector<LuauClasses::Vector3>& Positions, std::vector<LuauClasses::Vector3>& Normals, std::vector<LuauClasses::Vector2>& Texcoords, GLenum* IndicesType, size_t* IndicesSize, size_t* IndicesLen) {
 
 		std::vector<Vertex> Vertices;
+		std::vector<unsigned int> Indices;
 		file::loadOBJBase(filePath, Vertices, Indices);
 
 		for (size_t i = 0; i < Vertices.size(); ++i) {
@@ -431,6 +433,45 @@ namespace file {
 			Positions.push_back(Vertices[i].Position);
 			Normals.push_back(Vertices[i].Normal);
 			Texcoords.push_back(Vertices[i].Texcoord);
+		}
+
+		*IndicesLen = Indices.size();
+
+		if (Indices.back() <= UINT8_MAX) {
+
+			*IndicesType = GL_UNSIGNED_BYTE;
+			*IndicesSize = Indices.size() * sizeof(Uint8);
+
+			Uint8* NewIndices = new Uint8[Indices.size()];
+
+			for (size_t i = 0; i < Indices.size(); ++i) {
+				NewIndices[i] = static_cast<Uint8>(Indices[i]);
+			}
+
+			return NewIndices;
+
+		} else if (Indices.back() <= UINT16_MAX) {
+
+			*IndicesType = GL_UNSIGNED_SHORT;
+			*IndicesSize = Indices.size() * sizeof(Uint16);
+
+			Uint16* NewIndices = new Uint16[Indices.size()];
+
+			for (size_t i = 0; i < Indices.size(); ++i) {
+				NewIndices[i] = static_cast<Uint16>(Indices[i]);
+			}
+
+			return NewIndices;
+		} else {
+
+			*IndicesType = GL_UNSIGNED_INT;
+			*IndicesSize = Indices.size() * sizeof(Uint32);
+
+			Uint32* NewIndices = new Uint32[Indices.size()];
+
+			memcpy(NewIndices, Indices.data(), Indices.size() * sizeof(Uint32));
+
+			return NewIndices;
 		}
 	}
 }

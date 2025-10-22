@@ -6,7 +6,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 
-template <typename DataType = void*>
+template<typename DataType = void*>
 struct TaskStruct {
 	void(*FunctionPtr)(DataType Data);
 	DataType Data;
@@ -21,6 +21,23 @@ static std::vector<TaskStruct<>*> Tasks;
 namespace LuauClasses::task {
 
 	template <typename DataType = void*>
+	TaskStruct<DataType>* CreateDelayedTask(void(*FunctionPtr)(DataType Data), DataType Data, Uint64 DelayByMilliseconds);
+
+	template <typename DataType = void*>
+	constexpr SDL_FORCE_INLINE TaskStruct<DataType>* CreateDelayedTask(void(*FunctionPtr)(DataType Data), DataType Data, float DelayBySeconds);
+
+	template <typename DataType = void*>
+	SDL_FORCE_INLINE TaskStruct<DataType>* CreateDeferedTask(void(*FunctionPtr)(DataType Data), DataType Data);
+
+	void CancelTask(TaskStruct<>* CancellingTask);
+
+	SDL_FORCE_INLINE void Update();
+
+
+
+	// IMPLEMENTATION
+
+	template <typename DataType>
 	TaskStruct<DataType>* CreateDelayedTask(void(*FunctionPtr)(DataType Data), DataType Data, Uint64 DelayByMilliseconds) {
 
 		TaskStruct<DataType>* DelayedTask = new TaskStruct<DataType>;
@@ -34,13 +51,13 @@ namespace LuauClasses::task {
 		return DelayedTask;
 	}
 
-	template <typename DataType = void*>
-	constexpr SDL_FORCE_INLINE TaskStruct<DataType>* CreateDelayedTask(void(*FunctionPtr)(DataType Data), DataType Data, float DelayBySeconds) {
+	template <typename DataType>
+	constexpr TaskStruct<DataType>* CreateDelayedTask(void(*FunctionPtr)(DataType Data), DataType Data, float DelayBySeconds) {
 		return CreateDelayedTask(FunctionPtr, Data, static_cast<Uint64>(DelayBySeconds * 1000.f));
 	}
 
-	template <typename DataType = void*>
-	SDL_FORCE_INLINE TaskStruct<DataType>* CreateDeferedTask(void(*FunctionPtr)(DataType Data), DataType Data) {
+	template <typename DataType>
+	TaskStruct<DataType>* CreateDeferedTask(void(*FunctionPtr)(DataType Data), DataType Data) {
 		return CreateDelayedTask<DataType>(FunctionPtr, Data, 0ui64);
 	}
 
@@ -49,12 +66,13 @@ namespace LuauClasses::task {
 		delete CancellingTask;
 	}
 
-	SDL_FORCE_INLINE void Update() {
+	void Update() {
 
 		for (auto& Task : Tasks) {
 
-			if (Task == nullptr)
+			if (Task == nullptr) {
 				continue;
+			}
 
 			if (SDL_GetTicks64() >= Task->ExecuteAtMillisecond) {
 				Task->FunctionPtr(Task->Data);

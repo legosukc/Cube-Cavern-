@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR2_HEADER
+#define VECTOR2_HEADER
 
 #include <xmmintrin.h>
 #include <smmintrin.h>
@@ -176,7 +177,7 @@ LuauClasses::Vector2 LuauClasses::Vector2::Unit() const {
 
 LuauClasses::Vector2 LuauClasses::Vector2::Round() const {
 	float RoundedVector[4];
-	_mm_store_ps(RoundedVector, _mm_round_ps(this->m128FromVector2(), _MM_ROUND_TOWARD_ZERO));
+	_mm_store_ps(RoundedVector, _mm_round_ps(this->m128FromVector2(), _MM_ROUND_NEAREST));
 	return *reinterpret_cast<LuauClasses::Vector2*>(RoundedVector);
 }
 
@@ -217,5 +218,7 @@ LuauClasses::Vector2 LuauClasses::Vector2::Clamp(const LuauClasses::Vector2& Min
 
 
 LuauClasses::Vector2 LuauClasses::Vector2::Lerp(const LuauClasses::Vector2& Goal, float Alpha) const {
-	return *this + (Goal - *this) * Alpha;
+	return LuauClasses::Vector2(0.f); //*this + (Goal - *this) * Alpha;
 }
+
+#endif

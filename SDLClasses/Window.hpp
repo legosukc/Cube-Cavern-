@@ -163,7 +163,7 @@ namespace SDLClasses {
 				SDL_Delay(TargetMilliseconds - TickDelta);
 			}
 
-			this->Delta60 = std::max((double)TickDelta / (1000.0 / (double)this->FPS), 1.0);
+			this->Delta60 = SDL_max((double)TickDelta / (1000.0 / (double)this->FPS), 1.0);
 			//this->Delta60 = SDL_max((double)TickDelta / (double)TargetMilliseconds, 1.0); //SDL_max((double)TickDelta / (1000.0 / (double)this->FPS), 0.0625);
 			this->LastTick = Ticks;
 

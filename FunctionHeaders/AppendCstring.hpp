@@ -5,7 +5,7 @@
 
 namespace AppendCstring {
 
-	static char* AppendCstring(const char* Source, const char* Appendant) {
+	char* AppendCstring(const char* Source, const char* Appendant) {
 
 		const size_t SourceLen = std::strlen(Source);
 		const size_t AppendantLen = std::strlen(Appendant);
@@ -18,7 +18,7 @@ namespace AppendCstring {
 
 		return Concat;
 	}
-	static char* AppendCstringFree(char* Source, const char* Appendant) {
+	char* AppendCstringFree(char* Source, const char* Appendant) {
 
 		char* Concat = AppendCstring::AppendCstring(Source, Appendant);
 		delete[] Source;
@@ -26,7 +26,7 @@ namespace AppendCstring {
 		return Concat;
 	}
 
-	static char* AppendCharacter(const char* Source, char Appendant) {
+	char* AppendCharacter(const char* Source, char Appendant) {
 		const size_t SourceLength = std::strlen(Source);
 
 		char* Concat = new char[SourceLength + 2];
@@ -37,7 +37,7 @@ namespace AppendCstring {
 
 		return Concat;
 	}
-	static char* AppendCharacterFree(char* Source, char Appendant) {
+	char* AppendCharacterFree(char* Source, char Appendant) {
 		const size_t SourceLength = std::strlen(Source);
 
 		char* Concat = new char[SourceLength + 2];

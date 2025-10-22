@@ -2,17 +2,16 @@
 #define _RENDERING_FUNCTIONS
 
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/fwd.hpp>
 
 #include <cmath>
 
-#include "LuauClasses/Vector3.hpp"
+#include "./LuauClasses/Vector3.hpp"
+#include <immintrin.h>
 
 namespace RenderingFunctions {
 
-	static glm::mat4 perspective(float fovy, float aspect, float zNear, float zFar) {
-
+	glm::mat4 perspective(float fovy, float aspect, float zNear, float zFar) {
+		
 		const float tanHalfFovy = std::tan(fovy / 2.f);
 
 		glm::mat4 Result(0.f);
@@ -25,10 +24,17 @@ namespace RenderingFunctions {
 		return Result;
 	}
 
-	static glm::mat4 rotate(const glm::mat4& m, float angle, const LuauClasses::Vector3& v) {
-		
-		const float AngleCosine = std::cos(angle);
-		const float AngleSine = std::sin(angle);
+	glm::mat4 rotate(const glm::mat4& m, float angle, const LuauClasses::Vector3& v) {
+
+		float AngleSine, AngleCosine;
+		{
+			__m128 CosineVec;
+			_mm_store_ss(&AngleSine, _mm_sincos_ps(&CosineVec, _mm_set_ss(angle)));
+			_mm_store_ss(&AngleCosine, CosineVec);
+		}
+
+		//const float AngleCosine = std::cos(angle);
+		//const float AngleSine = std::sin(angle);
 
 		const LuauClasses::Vector3 axis = v.Unit();
 		const LuauClasses::Vector3 temp = ((1.f - AngleCosine) * axis);
@@ -54,13 +60,13 @@ namespace RenderingFunctions {
 		return Result;
 	}
 
-	static glm::mat4 translate(const glm::mat4& m, const LuauClasses::Vector3& v) {
+	glm::mat4 translate(const glm::mat4& m, const LuauClasses::Vector3& v) {
 		glm::mat4 Result(m);
 		Result[3] = m[0] * v.X + m[1] * v.Y + m[2] * v.Z + m[3];
 		return Result;
 	}
 
-	static glm::mat4 lookAt(const LuauClasses::Vector3& eye, const LuauClasses::Vector3& center, const LuauClasses::Vector3& up) {
+	glm::mat4 lookAt(const LuauClasses::Vector3& eye, const LuauClasses::Vector3& center, const LuauClasses::Vector3& up) {
 
 		const LuauClasses::Vector3 f = (center - eye).Unit();
 		const LuauClasses::Vector3 s = f.Cross(up).Unit();
@@ -78,7 +84,7 @@ namespace RenderingFunctions {
 		Result[0][2] = -f.X;
 		Result[1][2] = -f.Y;
 		Result[2][2] = -f.Z;
-
+		
 		Result[3][0] = -s.Dot(eye);
 		Result[3][1] = -u.Dot(eye);
 		Result[3][2] = f.Dot(eye);

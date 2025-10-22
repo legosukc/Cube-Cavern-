@@ -34,9 +34,6 @@
     <Filter Include="Header Files\OpenGLObjects\Doomspire">
       <UniqueIdentifier>{c931ed04-a4f6-44c2-b682-1790dc82d757}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\OpenGLObjects\ViewArm">
-      <UniqueIdentifier>{0f34495c-79f8-4c28-b0e6-68e015bb2851}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\OpenGLObjects\UniformBuffers">
       <UniqueIdentifier>{c493a692-0313-470a-9aa8-9005b05e4d61}</UniqueIdentifier>
     </Filter>
@@ -49,16 +46,64 @@
     <Filter Include="Header Files\Enums">
       <UniqueIdentifier>{8c760889-15b1-4067-b439-c11fb4255cf8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\OpenGLObjects\Dagger">
-      <UniqueIdentifier>{cd9c415f-b3bf-41a7-819b-db1cacf1b73a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\OpenGLObjects\Quad">
       <UniqueIdentifier>{89421dbb-6318-49c6-beb7-00e6bafabeb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\TutorialBubble">
+      <UniqueIdentifier>{9fdf2241-f57b-4520-a853-2bc351928910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\Bottle">
+      <UniqueIdentifier>{34bf9aae-1cf9-46cf-8c92-0c6557b41c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\CommonShaders">
+      <UniqueIdentifier>{174b4ff0-0023-4b0e-8438-318a0ebef178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGLObjects\BaseClasses">
+      <UniqueIdentifier>{aac391e4-0b46-4329-bc6b-72fa5f747c62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ItemClasses\BaseClasses">
+      <UniqueIdentifier>{a128098a-4ba7-4a45-bf99-0907b77aaa8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LuaClasses">
+      <UniqueIdentifier>{1bff4b47-1ebd-47ff-b455-ce9686c3cddb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LuaLibraries">
+      <UniqueIdentifier>{481c448b-5fd9-4a0e-9646-06b767f3fea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ItemClasses">
+      <UniqueIdentifier>{8ef4dbda-8a12-44cb-9f84-a8868e7fdef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EnemyClasses">
+      <UniqueIdentifier>{50dcb331-78b8-4f78-8b6b-e69418aa5e18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InteractClasses">
+      <UniqueIdentifier>{51c526e8-4382-47b4-86dc-871089c3006d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLObjects\ColoredModelBase.cpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLObjects\ModelBase.cpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLObjects\ObjectBase.cpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLObjects\TexturedModelBase.cpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemClasses\ItemBase.cpp">
+      <Filter>Header Files\ItemClasses\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemClasses\NotPhysicalItemBase.cpp">
+      <Filter>Header Files\ItemClasses\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLObjects\ParentedColoredModelBase.cpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +112,6 @@
     </ClInclude>
     <ClInclude Include="OtherClasses\GLClasses.hpp">
       <Filter>Header Files\OtherClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenGLObjects\ObjectBase.hpp">
-      <Filter>Header Files\OpenGLObjects</Filter>
     </ClInclude>
     <ClInclude Include="OpenGLObjects\Quad.hpp">
       <Filter>Header Files\OpenGLObjects\Quad</Filter>
@@ -107,9 +149,6 @@
     <ClInclude Include="FunctionHeaders\Maths.hpp">
       <Filter>Header Files\FunctionHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="4x4Matrix.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OpenGLObjects\doomspire.hpp">
       <Filter>Header Files\OpenGLObjects\Doomspire</Filter>
     </ClInclude>
@@ -119,9 +158,6 @@
     <ClInclude Include="IntTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLObjects\ViewArmRight.hpp">
-      <Filter>Header Files\OpenGLObjects\ViewArm</Filter>
-    </ClInclude>
     <ClInclude Include="FunctionHeaders\Error.hpp">
       <Filter>Header Files\FunctionHeaders</Filter>
     </ClInclude>
@@ -130,9 +166,6 @@
     </ClInclude>
     <ClInclude Include="GameClasses\ObjectManager.hpp">
       <Filter>Header Files\GameClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="UniformBufferBindingIndexes.hpp">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OpenGLObjects\UniformBuffers\RenderingMatrices.hpp">
       <Filter>Header Files\OpenGLObjects\UniformBuffers</Filter>
@@ -149,29 +182,158 @@
     <ClInclude Include="ItemClasses\NoWeapon.hpp">
       <Filter>Header Files\ItemClasses</Filter>
     </ClInclude>
-    <ClInclude Include="ItemClasses\ItemBase.hpp">
-      <Filter>Header Files\ItemClasses</Filter>
-    </ClInclude>
     <ClInclude Include="Enums\ItemTypeEnums.hpp">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="GameClasses\Items.hpp">
       <Filter>Header Files\GameClasses</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLObjects\Dagger.hpp">
-      <Filter>Header Files\OpenGLObjects\Dagger</Filter>
-    </ClInclude>
     <ClInclude Include="ItemClasses\ItemClasses.hpp">
       <Filter>Header Files\ItemClasses</Filter>
     </ClInclude>
+    <ClInclude Include="Enums\UniformBufferBindingIndexes.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\TutorialBubble.hpp">
+      <Filter>Header Files\OpenGLObjects\TutorialBubble</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherClasses\ExpandableArray.hpp">
+      <Filter>Header Files\OtherClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLClasses\Sound.hpp">
+      <Filter>Header Files\SDLClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Dagger.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\SoulBottle.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\BottleC.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\BottleG.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\BottleR.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\BottleY.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Fabric.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Rock.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Rope.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Stick.hpp">
+      <Filter>Header Files\OpenGLObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\Bottle.hpp">
+      <Filter>Header Files\OpenGLObjects\Bottle</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleY.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\Bottle.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleB.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleC.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleG.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\BottleR.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\Rock.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\Rope.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\Stick.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\Fabric.hpp">
+      <Filter>Header Files\ItemClasses</Filter>
+    </ClInclude>
     <ClInclude Include="OpenGLObjects\ModelBase.hpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ObjectBase.hpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\TexturedModelBase.hpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ParentedTexturedModelBase.hpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ParentedColoredModelBase.hpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ColoredModelBase.hpp">
+      <Filter>Header Files\OpenGLObjects\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionHeaders\Random.hpp">
+      <Filter>Header Files\FunctionHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLObjects\ViewArmRight.hpp">
       <Filter>Header Files\OpenGLObjects</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLObjects\ViewModelObjectBase.hpp">
-      <Filter>Header Files\OpenGLObjects</Filter>
+    <ClInclude Include="ItemClasses\SoulBottleBase.hpp">
+      <Filter>Header Files\ItemClasses\BaseClasses</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLObjects\ViewModelItemBase.hpp">
-      <Filter>Header Files\OpenGLObjects</Filter>
+    <ClInclude Include="ItemClasses\ItemBase.hpp">
+      <Filter>Header Files\ItemClasses\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\MeleeWeaponBase.hpp">
+      <Filter>Header Files\ItemClasses\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\NotPhysicalItemBase.hpp">
+      <Filter>Header Files\ItemClasses\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemClasses\WeaponBase.hpp">
+      <Filter>Header Files\ItemClasses\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaClasses\LuaTableBase.hpp">
+      <Filter>Header Files\LuaClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaClasses\LuaContext.hpp">
+      <Filter>Header Files\LuaClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaClasses\LuaGlobalTable.hpp">
+      <Filter>Header Files\LuaClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaClasses\LuaScript.hpp">
+      <Filter>Header Files\LuaClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaClasses\LuaTable.hpp">
+      <Filter>Header Files\LuaClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\OpenGL.hpp">
+      <Filter>Header Files\LuaLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaDebug.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\buffer.hpp">
+      <Filter>Header Files\LuaLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\Enums.hpp">
+      <Filter>Header Files\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -187,11 +349,53 @@
     <None Include="Release\shaders\doomspire.vert">
       <Filter>Header Files\OpenGLObjects\Doomspire</Filter>
     </None>
-    <None Include="Release\shaders\ViewArm.frag">
-      <Filter>Header Files\OpenGLObjects\ViewArm</Filter>
+    <None Include="Release\shaders\TutorialBubble.frag">
+      <Filter>Header Files\OpenGLObjects\TutorialBubble</Filter>
     </None>
-    <None Include="Release\shaders\ViewArm.vert">
-      <Filter>Header Files\OpenGLObjects\ViewArm</Filter>
+    <None Include="Release\shaders\TutorialBubble.vert">
+      <Filter>Header Files\OpenGLObjects\TutorialBubble</Filter>
+    </None>
+    <None Include="Release\shaders\ShadedColorModel.vert">
+      <Filter>Resource Files\CommonShaders</Filter>
+    </None>
+    <None Include="Release\shaders\ShadedColor.frag">
+      <Filter>Resource Files\CommonShaders</Filter>
+    </None>
+    <None Include="Release\shaders\ShadedTexture.frag">
+      <Filter>Resource Files\CommonShaders</Filter>
+    </None>
+    <None Include="Release\shaders\ShadedTextureModel.vert">
+      <Filter>Resource Files\CommonShaders</Filter>
+    </None>
+    <None Include="Release\ItemClasses\NoWeapon.lua">
+      <Filter>Source Files\ItemClasses</Filter>
+    </None>
+    <None Include="Release\ItemClasses\ItemBase.lua">
+      <Filter>Source Files\ItemClasses</Filter>
+    </None>
+    <None Include="Release\ItemClasses\Dagger.lua">
+      <Filter>Source Files\ItemClasses</Filter>
+    </None>
+    <None Include="Release\Items.lua">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Release\GameLoop.lua">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Release\Enemies.lua">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Release\Interaction.lua">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Release\InteractClasses\InteractableBase.lua">
+      <Filter>Source Files\InteractClasses</Filter>
+    </None>
+    <None Include="Release\EnemyClasses\EnemyBase.lua">
+      <Filter>Source Files\EnemyClasses</Filter>
+    </None>
+    <None Include="Release\ItemClasses\WeaponBase.lua">
+      <Filter>Source Files\ItemClasses</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
