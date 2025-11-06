@@ -1,10 +1,6 @@
 #ifndef _ENUMS_ITEMTYPES
 #define _ENUMS_ITEMTYPES
 
-extern "C" {
-#include <lua-5.4.2/lua.h>
-}
-
 #include "../LuaClasses/LuaContext.hpp"
 #include "../LuaClasses/LuaTable.hpp"
 #include "../LuaClasses/LuaGlobalTable.hpp"
@@ -20,6 +16,10 @@ namespace Enums::ItemTypes {
 		Ranged,
 		Magic,
 	};
+
+	constexpr inline bool IsValidEnum(ItemTypesEnum Enum) {
+		return (Enum >= ItemTypesEnum::Item) && (Enum <= ItemTypesEnum::Magic);
+	}
 
 	inline void AddToLuaTable(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
 

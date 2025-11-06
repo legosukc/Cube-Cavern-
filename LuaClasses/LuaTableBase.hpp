@@ -5,12 +5,31 @@ extern "C" {
 #include <lua-5.4.2/lua.h>
 }
 
+#include "../LuaHelper.hpp"
+
 #include "LuaContext.hpp"
 #include "../LuaTypes.h"
 
 namespace LuaClasses {
 
     class LuaTableBase {
+
+        class Iterator {
+
+            const LuaTableBase* Table;
+
+        public:
+            Iterator(const LuaTableBase* TablePtr);
+
+            int Key;
+            int Value;
+            bool Running;
+
+            // Prefix increment
+            const Iterator& operator++();
+        };
+        friend struct Iterator;
+
     protected:
 
         LuaClasses::LuaContext* AttachedContext;
@@ -18,7 +37,7 @@ namespace LuaClasses {
     public:
 
         LuaTableBase(LuaClasses::LuaContext* Context, int PreallocateIndexes, int PreallocateKeyElements);
-        LuaTableBase();
+        inline LuaTableBase();
 
         inline void PushOntoStack();
 
@@ -42,11 +61,37 @@ namespace LuaClasses {
 
         template<typename IndexType>
         LuaObject GetElement(IndexType Index);
+
+        inline Iterator GetIterator() const;
     };
-    
+
 
 
     // IMPLEMENTATION
+
+    LuaTableBase::Iterator::Iterator(const LuaTableBase* TablePtr) {
+
+        this->Table = TablePtr;
+
+        TablePtr->AttachedContext->PushNilOntoStack();
+        this->Key = TablePtr->AttachedContext->GetStackTop();
+        this->Value = this->Key;
+
+        this->Running = true;
+    }
+
+    // Prefix increment
+    const LuaTableBase::Iterator& LuaTableBase::Iterator::operator++() {
+
+        this->Running = lua_next(this->Table->AttachedContext->ContextObject, this->Key) != 0;
+
+        this->Key = lua_absindex(this->Table->AttachedContext->ContextObject, -2);
+        this->Value = this->Table->AttachedContext->GetStackTop();
+
+        return *this;
+    }
+
+
 
     LuaTableBase::LuaTableBase(LuaClasses::LuaContext* Context, int PreallocateIndexes, int PreallocateKeyElements) {
 
@@ -57,7 +102,6 @@ namespace LuaClasses {
     LuaTableBase::LuaTableBase() {
         this->AttachedContext = nullptr;
     }
-
 
     template<typename IndexType, typename SetType>
     void LuaTableBase::SetElement(IndexType Index, SetType SetTo) {
@@ -129,6 +173,10 @@ namespace LuaClasses {
 
         return lua_gettable(this->AttachedContext->ContextObject, -2);
     }
-};
+
+    LuaTableBase::Iterator LuaTableBase::GetIterator() const {
+        return LuaTableBase::Iterator(this);
+    }
+}
 
 #endif

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -86,8 +86,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\clib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
       <FloatingPointExceptions>true</FloatingPointExceptions>
     </ClCompile>
     <Link>
@@ -182,9 +182,18 @@
   <ItemGroup>
     <ClInclude Include="Enums\Enums.hpp" />
     <ClInclude Include="Enums\ItemTypeEnums.hpp" />
+    <ClInclude Include="Enums\OpenGLBuffers.hpp" />
+    <ClInclude Include="Enums\OpenGLComparison.hpp" />
+    <ClInclude Include="Enums\OpenGLDrawModes.hpp" />
+    <ClInclude Include="Enums\OpenGLOperations.hpp" />
+    <ClInclude Include="Enums\OpenGLShaderTypes.hpp" />
+    <ClInclude Include="Enums\OpenGLTextureFormats.hpp" />
+    <ClInclude Include="Enums\OpenGLTypes.hpp" />
     <ClInclude Include="Enums\UniformBufferBindingIndexes.hpp" />
     <ClInclude Include="FunctionHeaders\Error.hpp" />
     <ClInclude Include="FunctionHeaders\Random.hpp" />
+    <ClInclude Include="GameClasses\Enemies.hpp" />
+    <ClInclude Include="GameClasses\Interactables.hpp" />
     <ClInclude Include="GameClasses\Items.hpp">
       <FileType>CppHeader</FileType>
     </ClInclude>
@@ -239,9 +248,12 @@
     <ClInclude Include="LuaClasses\LuaScript.hpp" />
     <ClInclude Include="LuaClasses\LuaTable.hpp" />
     <ClInclude Include="LuaClasses\LuaTableBase.hpp" />
+    <ClInclude Include="LuaClasses\LuaUpvalue.hpp" />
     <ClInclude Include="LuaDebug.hpp" />
+    <ClInclude Include="LuaHelper.hpp" />
     <ClInclude Include="LuaLibraries\buffer.hpp" />
     <ClInclude Include="LuaLibraries\OpenGL.hpp" />
+    <ClInclude Include="LuaPreprocessor.hpp" />
     <ClInclude Include="LuaTypes.h" />
     <ClInclude Include="LuauClasses\BindableEvent.hpp" />
     <ClInclude Include="LuauClasses\CFrame.hpp" />
@@ -314,6 +326,7 @@
     <None Include="Release\ItemClasses\NoWeapon.lua" />
     <None Include="Release\ItemClasses\WeaponBase.lua" />
     <None Include="Release\Items.lua" />
+    <None Include="Release\Modules\ObjectAuthorityClass.lua" />
     <None Include="Release\shaders\ShadedColor.frag" />
     <None Include="Release\shaders\ShadedColorModel.vert" />
     <None Include="Release\shaders\doomspire.frag" />

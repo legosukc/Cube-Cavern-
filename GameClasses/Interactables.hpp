@@ -37,8 +37,6 @@ namespace GameClasses::Items {
 
 #include <filesystem>
 
-#include "FunctionHeaders/LuaHelper.hpp"
-
 #include "LuaClasses/LuaContext.hpp"
 #include "LuaClasses/LuaGlobalTable.hpp"
 #include "LuaClasses/LuaTable.hpp"
@@ -63,7 +61,6 @@ namespace _Game_Items_CFunctions {
 
         lua_getglobal(Context, "Game");
 
-        LuaHelper::
         lua_pushliteral(Context, "Items");
         lua_gettable(Context, -2);
 

@@ -79,6 +79,9 @@
     <Filter Include="Source Files\InteractClasses">
       <UniqueIdentifier>{51c526e8-4382-47b4-86dc-871089c3006d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Modules">
+      <UniqueIdentifier>{957a6aa7-034c-4573-8e7d-a0b06a7f70f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -335,6 +338,42 @@
     <ClInclude Include="Enums\Enums.hpp">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="GameClasses\Enemies.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClasses\Interactables.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaClasses\LuaUpvalue.hpp">
+      <Filter>Header Files\LuaClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaPreprocessor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLTypes.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLTextureFormats.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLDrawModes.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLComparison.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaHelper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLBuffers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLOperations.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLShaderTypes.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Release\shaders\quad.vert">
@@ -396,6 +435,9 @@
     </None>
     <None Include="Release\ItemClasses\WeaponBase.lua">
       <Filter>Source Files\ItemClasses</Filter>
+    </None>
+    <None Include="Release\Modules\ObjectAuthorityClass.lua">
+      <Filter>Source Files\Modules</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

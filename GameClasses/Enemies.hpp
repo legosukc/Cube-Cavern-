@@ -1,29 +1,6 @@
-/*
-#ifndef _GAMECLASSES_ITEMS
-#define _GAMECLASSES_ITEMS
 
-#include <vector>
-
-#include "./ItemClasses/ItemBase.hpp"
-#include "./OpenGLObjects/ObjectBase.hpp"
-
-namespace GameClasses::Items {
-
-	typedef ItemClasses::ItemBase<OpenGLObjects::ObjectBase> AbstractItemType;
-
-	std::vector<AbstractItemType*> Items;
-
-	inline void Update();
-	inline void Draw();
-
-	template<class ItemClass, class OwnerType = ItemClass::OwnerType, typename _inferred>
-	ItemClass* CreateItem(OwnerType* Owner, _inferred* GLObjectParent);
-
-	template<class ItemClass, class OwnerType = ItemClass::OwnerType>
-	ItemClass* CreateItem(OwnerType* Owner);
-};
-
-#endif*/
+#ifndef _GAMECLASSES_ENEMIES
+#define _GAMECLASSES_ENEMIES
 
 #include <SDL2/SDL_timer.h>
 
@@ -36,8 +13,6 @@ namespace GameClasses::Items {
 #include <queue>
 
 #include <filesystem>
-
-#include "FunctionHeaders/LuaHelper.hpp"
 
 #include "LuaClasses/LuaContext.hpp"
 #include "LuaClasses/LuaGlobalTable.hpp"
@@ -53,21 +28,16 @@ extern "C" {
 static LuaClasses::LuaContext* CurrentContext;
 
 
-namespace _Game_Items_CFunctions {
+namespace _private::Game::Enemies::CFunctions {
 
-    static inline int _cdecl CreateItem(lua_State* Context) {
-
-        if (!lua_isstring(Context, -1)) {
-            return -1;
-        }
+    static inline int _cdecl CreateEnemy(lua_State* Context) {
 
         lua_getglobal(Context, "Game");
 
-        LuaHelper::
-        lua_pushliteral(Context, "Items");
+        lua_pushliteral(Context, "Enemies");
         lua_gettable(Context, -2);
 
-        lua_pushliteral(Context, "CreateItem");
+        lua_pushliteral(Context, "CreateEnemy");
         lua_gettable(Context, -2);
 
         lua_pushvalue(Context, -4);
@@ -76,37 +46,33 @@ namespace _Game_Items_CFunctions {
         return 1;
     }
 
-    static int _cdecl RemoveItem(lua_State* Context) {
+    static int _cdecl RemoveEnemy(lua_State* Context) {
 
         if (!lua_istable(Context, -1)) {
             return -1;
         }
 
-        lua_pushliteral(Context, "_ItemsTableIndex");
-        LuaObject ItemClassIndex = lua_gettable(Context, -2);
-        if (!lua_isinteger(Context, ItemClassIndex)) {
+        lua_pushliteral(Context, "_EnemiesTableIndex");
+        LuaObject EnemyClassIndex = lua_gettable(Context, -2);
+        if (!lua_isinteger(Context, EnemyClassIndex)) {
             return -1;
         }
 
         lua_getglobal(Context, "Game");
 
-        lua_pushliteral(Context, "Items");
+        lua_pushliteral(Context, "Enemies");
         lua_gettable(Context, -2);
 
-        lua_pushliteral(Context, "Items");
+        lua_pushliteral(Context, "Enemies");
         lua_gettable(Context, -2);
 
-        lua_pushvalue(Context, ItemClassIndex);
+        lua_pushvalue(Context, EnemyClassIndex);
         lua_pushnil(Context);
         lua_settable(Context, -3);
 
         lua_pop(Context, 3);
 
-        lua_pushliteral(Context, "_ItemsTableIndex");
-        lua_pushnil(Context);
-        lua_settable(Context, -3);
-
-        lua_pushliteral(Context, "Owner");
+        lua_pushliteral(Context, "_EnemiesTableIndex");
         lua_pushnil(Context);
         lua_settable(Context, -3);
 
@@ -116,8 +82,9 @@ namespace _Game_Items_CFunctions {
     }
 }
 
-namespace Game::Items {
+namespace Game::Enemies {
 
+    /*
     struct ItemClassEntry {
 
         char* Name;
@@ -129,11 +96,6 @@ namespace Game::Items {
         for (const auto& File : std::filesystem::directory_iterator("ItemClasses\\")) {
 
             const char* ItemClassPath = File.path().string().c_str();
-
-            /*
-            if (Context.IsTable(AssetsItemClasses.GetElement(ItemClassName))) {
-                continue;
-            }*/
 
             std::cout << ItemClassPath << '\n';
 
@@ -162,19 +124,19 @@ namespace Game::Items {
         }
 
         *ThreadRunning = false;
-    }
+    }*/
 
     inline void Init(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& GameTable, LuaClasses::LuaGlobalTable& AssetsTable) {
 
-        LuaClasses::LuaTable AssetsItemClasses(&Context);
+        LuaClasses::LuaTable AssetsEnemyClasses(&Context);
 
-        if (auto ItemClassesDir = std::filesystem::directory_entry("ItemClasses\\"); !ItemClassesDir.is_directory()) {
+        if (auto EnemyClassesDir = std::filesystem::directory_entry("EnemyClasses\\"); !EnemyClassesDir.is_directory()) {
 
-            std::cerr << "::" << "FATAL" << ":: " << "::" << "ITEM CLASSES LOADING ERROR" << ":: ";
-            if (ItemClassesDir.is_regular_file()) {
-                std::cerr << "expected 'ItemClasses' to be a directory";
-            } else if (!ItemClassesDir.exists()) {
-                std::cerr << "directory 'ItemClasses' doesn't exist";
+            std::cerr << "::" << "FATAL" << ":: " << "::" << "ENEMY CLASSES LOADING ERROR" << ":: ";
+            if (EnemyClassesDir.is_regular_file()) {
+                std::cerr << "expected 'EnemyClasses' to be a directory";
+            } else if (!EnemyClassesDir.exists()) {
+                std::cerr << "directory 'EnemyClasses' doesn't exist";
             }
             std::cerr << std::endl;
 
@@ -185,7 +147,7 @@ namespace Game::Items {
             exit(EXIT_FAILURE);
         }
 
-        AssetsItemClasses.SetElement("__index", [](lua_State* Context) {
+        AssetsEnemyClasses.SetElement("__index", [](lua_State* Context) {
 
             if (!lua_isstring(Context, -1)) {
 
@@ -200,25 +162,25 @@ namespace Game::Items {
                 return 1;
             }
              
-            const size_t ItemClassFileNameSize = std::strlen("ItemClasses\\") + std::strlen(RequiringString) + std::strlen(".lua") + 1;
-            auto ItemClassFileName = std::make_unique<char>(ItemClassFileNameSize);
+            const size_t ClassFileNameSize = std::strlen("EnemyClasses\\") + std::strlen(RequiringString) + std::strlen(".lua") + 1;
+            auto ClassFileName = std::make_unique<char>(ClassFileNameSize);
             
-            std::memcpy(ItemClassFileName.get(), "ItemClasses\\", std::strlen("ItemClasses\\"));
-            std::memcpy(ItemClassFileName.get() + std::strlen("ItemClasses\\"), RequiringString, std::strlen(RequiringString));
-            std::strcpy(ItemClassFileName.get() + ItemClassFileNameSize - sizeof(".lua"), ".lua");
+            std::memcpy(ClassFileName.get(), "EnemyClasses\\", std::strlen("EnemyClasses\\"));
+            std::memcpy(ClassFileName.get() + std::strlen("EnemyClasses\\"), RequiringString, std::strlen(RequiringString));
+            std::strcpy(ClassFileName.get() + ClassFileNameSize - sizeof(".lua"), ".lua");
 
-            if (!std::filesystem::exists(ItemClassFileName.get())) {
-                luaL_error(Context, "::ITEM CLASS REQUIRE ERROR:: ItemClass '%s' doesn't exist", RequiringString);
+            if (!std::filesystem::exists(ClassFileName.get())) {
+                luaL_error(Context, "::ENEMY CLASS REQUIRE ERROR:: EnemyClass '%s' doesn't exist", RequiringString);
                 return -1;
             }
 
-            if (luaL_loadfilex(Context, ItemClassFileName.get(), 0)) {
-                luaL_error(Context, "::ITEM CLASS REQUIRE ERROR:: ItemClass '%s' had an error during loading", RequiringString);
+            if (luaL_loadfilex(Context, ClassFileName.get(), 0)) {
+                luaL_error(Context, "::ENEMY CLASS REQUIRE ERROR:: EnemyClass '%s' had an error during loading", RequiringString);
                 return -1;
             }
 
             if (lua_pcallk(Context, 0, -1, 0, 0, 0)) {
-                luaL_error(Context, "::ITEM CLASS REQUIRE ERROR:: ItemClass '%s' had an error during running", RequiringString);
+                luaL_error(Context, "::ENEMY CLASS REQUIRE ERROR:: EnemyClass '%s' had an error during running", RequiringString);
                 return -1;
             }
 
@@ -266,45 +228,45 @@ namespace Game::Items {
         }*/
         
         
-        for (const auto& File : std::filesystem::directory_iterator("ItemClasses\\")) {
+        for (const auto& File : std::filesystem::directory_iterator("EnemyClasses\\")) {
             
-            const char* ItemClassPath = File.path().string().c_str();
-            const char* ItemClassName = File.path().filename().stem().string().c_str();
+            const char* ClassPath = File.path().string().c_str();
+            const char* ClassName = File.path().filename().stem().string().c_str();
 
-            if (Context.IsTable(AssetsItemClasses.GetElement(ItemClassName))) {
+            if (Context.IsTable(AssetsEnemyClasses.GetElement(ClassName))) {
                 continue;
             }
 
-            std::cout << ItemClassPath << '\n';
+            std::cout << ClassPath << '\n';
 
             if (File.is_directory()) {
                 // TODO: implement searching sub-directories (modpacks)
                 continue;
             }
 
-            if (luaL_loadfilex(Context.ContextObject, ItemClassPath, 0)) {
-                std::cerr << "::" << "ITEM CLASS REQUIRE ERROR" << ":: " << "ItemClass '" << ItemClassName << "' had an error during loading" << std::endl;
+            if (luaL_loadfilex(Context.ContextObject, ClassPath, 0)) {
+                std::cerr << "::" << "ENEMY CLASS REQUIRE ERROR" << ":: " << "EnemyClass '" << ClassName << "' had an error during loading" << std::endl;
                 continue;
             }
 
             if (lua_pcallk(Context.ContextObject, 0, -1, 0, 0, 0)) {
-                std::cerr << "::" << "ITEM CLASS REQUIRE ERROR" << ":: " << "ItemClass '" << ItemClassName << "' had an error during running" << std::endl;
+                std::cerr << "::" << "ENEMY CLASS REQUIRE ERROR" << ":: " << "EnemyClass '" << ClassName << "' had an error during running" << std::endl;
                 continue;
             }
 
-            AssetsItemClasses.SetSubtable(ItemClassName, Context.GetStackTop());
+            AssetsEnemyClasses.SetSubtable(ClassName, Context.GetStackTop());
         }
 
         //AssetsItemClasses.PushOntoStack();
         //Context.PushNilOntoStack();
         //lua_setfield(Context.ContextObject, -2, "__index");
 
-        AssetsTable.SetSubtable("ItemClasses", AssetsItemClasses);
+        AssetsTable.SetSubtable("EnemyClasses", AssetsEnemyClasses);
 
-        luaL_dofile(Context.ContextObject, "Items.lua");
+        luaL_dofile(Context.ContextObject, "Enemies.lua");
 
         if (!Context.IsTable(-1)) {
-            std::cerr << "::" << "FATAL" << ":: " << "Failed to load " << "Items.lua" << '\n'
+            std::cerr << "::" << "FATAL" << ":: " << "Failed to load " << "Enemies.lua" << '\n'
                 << "Returned value from script isn't a table.\n"
                 << "Aborting" << std::endl;
             exit(EXIT_FAILURE);
@@ -312,48 +274,33 @@ namespace Game::Items {
 
         LuaClasses::LuaTable Items(Context.GetStackTop(), &Context);
         
-        GameTable.SetSubtable("Items", Items);
-
-        Items.SetElementWithLiteral("CreateItem", _Game_Items_CFunctions::CreateItem);
-        Items.SetElementWithLiteral("RemoveItem", _Game_Items_CFunctions::RemoveItem);
+        GameTable.SetSubtable("Enemies", Items);
+        
+        Items.SetElementWithLiteral("CreateEnemy", _private::Game::Enemies::CFunctions::CreateEnemy);
+        Items.SetElementWithLiteral("RemoveEnemy", _private::Game::Enemies::CFunctions::RemoveEnemy);
 
         CurrentContext = &Context;
     }
 
-    LuaClasses::LuaTable&& CreateItem(const char* Name) {
+    LuaClasses::LuaTable&& CreateEnemy(const char* Name) {
 
         CurrentContext->PushOntoStack(Name);
-        _Game_Items_CFunctions::CreateItem(CurrentContext->ContextObject);
+        _private::Game::Enemies::CFunctions::CreateEnemy(CurrentContext->ContextObject);
 
-        LuaClasses::LuaTable NewItem(CurrentContext, CurrentContext->GetStackTop());
+        LuaClasses::LuaTable NewEnemy(CurrentContext, CurrentContext->GetStackTop());
 
-        return std::move(NewItem);
+        return std::move(NewEnemy);
     }
 
-    inline void RemoveItem(LuaClasses::LuaTable& ItemClass) {
-        
-        ItemClass.PushOntoStack();
-        _Game_Items_CFunctions::RemoveItem(CurrentContext->ContextObject);
-    }
-
-    inline void RemoveItem(LuaTableObject ItemClass) {
+    inline void RemoveEnemy(LuaTableObject ItemClass) {
 
         CurrentContext->PushValueOntoStack(ItemClass);
-        _Game_Items_CFunctions::RemoveItem(CurrentContext->ContextObject);
+        _private::Game::Enemies::CFunctions::RemoveEnemy(CurrentContext->ContextObject);
     }
 
-    /*
-    inline void Update() {
-
-        CurrentContext->GetGlobal("Game");
-
-        CurrentContext->PushStringLiteral("Items");
-        lua_gettable(CurrentContext->ContextObject, -2);
-
-        CurrentContext->PushStringLiteral("Update");
-        lua_gettable(CurrentContext->ContextObject, -2);
-
-        lua_callk(CurrentContext->ContextObject, 0, -1, 0, 0);
-        CurrentContext->PopStack(3);
-    }*/
+    inline void RemoveEnemy(LuaClasses::LuaTable& ItemClass) {
+        RemoveEnemy(ItemClass.TableObject);
+    }
 }
+
+#endif

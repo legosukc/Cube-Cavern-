@@ -27,7 +27,7 @@ namespace GameClasses {
 
 		template <class ObjectClass = OpenGLObjects::ObjectBase>
 		inline ObjectClass* AddObject(ObjectClass* Object) {
-			this->Objects.push_back(reinterpret_cast<OpenGLObjects::ObjectBase*>(Object));
+			this->Objects.push_back(static_cast<OpenGLObjects::ObjectBase*>(Object));
 			return Object;
 		}
 

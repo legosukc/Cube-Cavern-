@@ -7,6 +7,7 @@ extern "C" {
 #include <lua-5.4.2/lauxlib.h>
 }
 
+#include "../LuaHelper.hpp"
 #include "../LuaTypes.h"
 
 #include <iostream>
@@ -98,7 +99,7 @@ namespace LuaClasses {
 
         // Creation
 
-        inline void PushNewTable();
+        inline void PushNewTable(int AllocateIndices = 0, int AllocateKeys = 0);
 
         inline void* PushNewUserdata(size_t UserdataSize);
 
@@ -287,8 +288,8 @@ namespace LuaClasses {
 
     // Creation
 
-    void LuaContext::PushNewTable() {
-        lua_createtable(this->ContextObject, 0, 0);
+    void LuaContext::PushNewTable(int AllocateIndices, int AllocateKeys) {
+        lua_createtable(this->ContextObject, AllocateIndices, AllocateKeys);
     }
 
     void* LuaContext::PushNewUserdata(size_t UserdataSize) {

@@ -16,6 +16,8 @@
 #include "./LuauClasses/Vector2.hpp"
 
 #include <iostream>
+#include <exception>
+#include <stdexcept>
 
 #include <glm/glm.hpp>
 #include <glm/fwd.hpp>
@@ -169,7 +171,7 @@ namespace GLClasses {
         GLint Width, Height;
         GLenum InternalFormat, Format, FormatType, WrapX, WrapY, NearFilterType, FarFilterType;
 
-        void CreateTextureUsingProperties(void* Pixels) const {
+        void CreateTextureUsingProperties(const void* Pixels) const {
             glBindTexture(GL_TEXTURE_2D, this->TextureObject);
             std::cout << this->InternalFormat << '\n'
                 << this->Width << '\n'
@@ -239,17 +241,20 @@ namespace GLClasses {
     template<GLenum BufferType>
     class BufferBase {
     public:
-        SDL_FORCE_INLINE BufferBase() {
+
+        inline BufferBase() {
             glGenBuffers(1, &this->Buffer);
         }
-        SDL_FORCE_INLINE BufferBase(const void* Data, GLsizeiptr Size, GLenum Usage = GL_STATIC_DRAW) {
-            this->Constructor(Data, Size, Usage);
-        }
-        SDL_FORCE_INLINE BufferBase(GLsizeiptr AllocateBytes, GLenum Usage = GL_STATIC_DRAW) {
-            this->Constructor(NULL, AllocateBytes, Usage);
+
+        BufferBase(const void* Data, GLsizeiptr Size, GLenum Usage = GL_STATIC_DRAW) : BufferBase() {
+            this->Bind();
+            this->BindDataPointerWithSize(Data, Size, Usage);
+            this->Unbind();
         }
 
-        SDL_FORCE_INLINE ~BufferBase() {
+        inline BufferBase(GLsizeiptr AllocateBytes, GLenum Usage = GL_STATIC_DRAW) : BufferBase(NULL, AllocateBytes, Usage) {}
+
+        inline ~BufferBase() {
             glDeleteBuffers(1, &this->Buffer);
         }
 
@@ -258,57 +263,59 @@ namespace GLClasses {
         // Binding Data
 
         template<typename T>
-        static SDL_FORCE_INLINE void BindDataPointer(const T* Data, GLenum Usage = GL_STATIC_DRAW) {
+        static inline void BindDataPointer(const T* Data, GLenum Usage = GL_STATIC_DRAW) {
             glBufferData(BufferType, sizeof(T), Data, Usage);
         }
 
         template<typename T>
-        static SDL_FORCE_INLINE void BindDataVariable(const T Data, GLenum Usage = GL_STATIC_DRAW) {
+        static inline void BindDataVariable(const T Data, GLenum Usage = GL_STATIC_DRAW) {
             glBufferData(BufferType, sizeof(T), &Data, Usage);
         }
 
-        static SDL_FORCE_INLINE void BindDataPointerWithSize(const void* Data, GLsizeiptr Size, GLenum Usage = GL_STATIC_DRAW) {
+        static inline void BindDataPointerWithSize(const void* Data, GLsizeiptr Size, GLenum Usage = GL_STATIC_DRAW) {
             glBufferData(BufferType, Size, Data, Usage);
         }
 
         // Subdata
 
         template<typename T>
-        static SDL_FORCE_INLINE void BindSubDataPointer(const T* Data, GLintptr Offset) {
+        static inline void BindSubDataPointer(const T* Data, GLintptr Offset) {
             glBufferSubData(BufferType, Offset, sizeof(T), Data);
         }
 
         template<typename T>
-        static SDL_FORCE_INLINE void BindSubDataVariable(const T Data, GLintptr Offset) {
+        static inline void BindSubDataVariable(const T Data, GLintptr Offset) {
             glBufferSubData(BufferType, Offset, sizeof(T), &Data);
         }
 
-        static SDL_FORCE_INLINE void BindSubDataPointerWithSize(const void* Data, GLsizeiptr Size, GLintptr Offset) {
+        static inline void BindSubDataPointerWithSize(const void* Data, GLsizeiptr Size, GLintptr Offset) {
             glBufferSubData(BufferType, Offset, Size, Data);
+        }
+
+        static inline void ReadFromBuffer(void* Data, GLsizeiptr ReadBytes, GLintptr Offset) {
+            glGetBufferSubData(BufferType, Offset, ReadBytes, Data);
+        }
+
+        static char* ReadFromBuffer(GLsizeiptr ReadBytes, GLintptr Offset) {
+
+            char* Data = new char[ReadBytes];
+            ReadFromBuffer(Data, ReadBytes, Offset);
+            return Data;
         }
 
         // Binding Data Helpers
 
-        static SDL_FORCE_INLINE void AllocateBytes(GLsizeiptr Size, GLenum Usage = GL_STATIC_DRAW) {
+        static inline void AllocateBytes(GLsizeiptr Size, GLenum Usage = GL_STATIC_DRAW) {
             glBufferData(BufferType, Size, NULL, Usage);
         }
 
         // Binding Buffer Helpers
 
-        SDL_FORCE_INLINE void Bind() const {
+        inline void Bind() const {
             glBindBuffer(BufferType, this->Buffer);
         }
-        static SDL_FORCE_INLINE void Unbind() {
+        static inline void Unbind() {
             glBindBuffer(BufferType, 0);
-        }
-    protected:
-
-        void Constructor(const void* Data, GLsizeiptr Size, GLenum Usage) {
-            glGenBuffers(1, &this->Buffer);
-
-            this->Bind();
-            this->BindDataPointerWithSize(Data, Size, Usage);
-            this->Unbind();
         }
     };
 
@@ -322,7 +329,7 @@ namespace GLClasses {
             this->StrideSize = StrideSize;
         }
 
-        SDL_FORCE_INLINE ~VertexArray() {
+        inline ~VertexArray() {
             glDeleteVertexArrays(1, &this->Buffer);
         }
 
@@ -330,11 +337,20 @@ namespace GLClasses {
         GLsizei StrideSize;
         GLuint AttributeCount = 0;
 
-        SDL_FORCE_INLINE void Bind() const {
+        inline void Bind() const {
             glBindVertexArray(this->Buffer);
         }
-        static SDL_FORCE_INLINE void Unbind() {
+        static inline void Unbind() {
             glBindVertexArray(0);
+        }
+
+        void AddAttribute(GLint AttributeLength, GLenum AttributeType, bool Normalized = false) {
+
+            glVertexAttribPointer(this->AttributeCount, AttributeLength, AttributeType, Normalized, this->StrideSize, (void*)this->AttributeOffset);
+            glEnableVertexAttribArray(this->AttributeCount);
+
+            this->AttributeOffset += AttributeLength * GLClasses::sizeofGLType(AttributeType);
+            ++this->AttributeCount;
         }
 
         template<GLenum AttributeType>
@@ -371,26 +387,19 @@ namespace GLClasses {
     class UniformBuffer : public BufferBase<GL_UNIFORM_BUFFER> {
     public:
 
-        SDL_FORCE_INLINE UniformBuffer() {
-        }
-
-        UniformBuffer(const void* Data, GLsizeiptr Size, GLuint BindingIndex, GLenum Usage = GL_STATIC_DRAW) {
-            this->Constructor(Data, Size, Usage);
+        inline UniformBuffer(const void* Data, GLsizeiptr Size, GLuint BindingIndex, GLenum Usage = GL_STATIC_DRAW) : BufferBase<GL_UNIFORM_BUFFER>(Data, Size, Usage) {
             this->BindBufferBase(BindingIndex);
         }
 
-        UniformBuffer(GLsizeiptr AllocateBytes, GLuint BindingIndex, GLenum Usage = GL_STATIC_DRAW) {
-            this->Constructor(NULL, AllocateBytes, Usage);
-            this->BindBufferBase(BindingIndex);
-        }
+        inline UniformBuffer(GLsizeiptr AllocateBytes, GLuint BindingIndex, GLenum Usage = GL_STATIC_DRAW) : UniformBuffer(NULL, AllocateBytes, BindingIndex, Usage) {}
 
-        SDL_FORCE_INLINE ~UniformBuffer() {
+        inline ~UniformBuffer() {
             glDeleteBuffers(1, &this->Buffer);
         }
 
         GLuint BufferIndex;
 
-        SDL_FORCE_INLINE void BindBufferBase() const {
+        inline void BindBufferBase() const {
             glBindBufferBase(GL_UNIFORM_BUFFER, this->BufferIndex, this->Buffer);
         }
         void BindBufferBase(GLuint BindingIndex) {
@@ -401,42 +410,42 @@ namespace GLClasses {
 
     class Framebuffer {
     public:
-        SDL_FORCE_INLINE Framebuffer() {
-            glGenFramebuffers(1, &buffer);
+        inline Framebuffer() {
+            glGenFramebuffers(1, &this->buffer);
         }
-        SDL_FORCE_INLINE ~Framebuffer() {
-            glDeleteFramebuffers(1, &buffer);
+        inline ~Framebuffer() {
+            glDeleteFramebuffers(1, &this->buffer);
         }
 
         GLuint buffer;
 
-        SDL_FORCE_INLINE void BindBuffer() const {
-            glBindFramebuffer(GL_FRAMEBUFFER, buffer);
+        inline void BindBuffer() const {
+            glBindFramebuffer(GL_FRAMEBUFFER, this->buffer);
         }
-        static SDL_FORCE_INLINE void BindDefaultFramebuffer() {
+        static inline void BindDefaultFramebuffer() {
             glBindFramebuffer(GL_FRAMEBUFFER, 0);
         }
 
-        static void AttachTexture(GLuint renderTexture, GLenum attachmentType) {
-            glFramebufferTexture2D(GL_FRAMEBUFFER, attachmentType, GL_TEXTURE_2D, renderTexture, 0);
+        static inline void AttachTexture(GLuint RenderTexture, GLenum AttachmentType) {
+            glFramebufferTexture2D(GL_FRAMEBUFFER, AttachmentType, GL_TEXTURE_2D, RenderTexture, 0);
         }
 
-        static SDL_FORCE_INLINE void AttachRenderTexture(GLuint renderTexture) {
-            AttachTexture(renderTexture, GL_COLOR_ATTACHMENT0);
+        static inline void AttachRenderTexture(GLuint RenderTexture) {
+            AttachTexture(RenderTexture, GL_COLOR_ATTACHMENT0);
         }
-        static SDL_FORCE_INLINE void AttachDepthStencilTexture(GLuint renderTexture) {
-            AttachTexture(renderTexture, GL_DEPTH_STENCIL_ATTACHMENT);
-        }
-
-        static SDL_FORCE_INLINE void AttachDepthTexture(GLuint renderTexture) {
-            AttachTexture(renderTexture, GL_DEPTH_ATTACHMENT);
+        static inline void AttachDepthStencilTexture(GLuint RenderTexture) {
+            AttachTexture(RenderTexture, GL_DEPTH_STENCIL_ATTACHMENT);
         }
 
-        static SDL_FORCE_INLINE void AttachStencilTexture(GLuint renderTexture) {
-            AttachTexture(renderTexture, GL_STENCIL_ATTACHMENT);
+        static inline void AttachDepthTexture(GLuint RenderTexture) {
+            AttachTexture(RenderTexture, GL_DEPTH_ATTACHMENT);
         }
 
-        static SDL_FORCE_INLINE bool CheckComplete() {
+        static inline void AttachStencilTexture(GLuint RenderTexture) {
+            AttachTexture(RenderTexture, GL_STENCIL_ATTACHMENT);
+        }
+
+        static inline bool CheckComplete() {
             return glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE;
         }
     };
@@ -444,42 +453,103 @@ namespace GLClasses {
 
     class Shader {
     public:
-        SDL_FORCE_INLINE Shader(GLenum ShaderType) {
+        inline Shader(GLenum ShaderType) {
             this->ShaderObject = glCreateShader(ShaderType);
         }
 
-        Shader(GLenum ShaderType, const char* ShaderName) {
+        Shader(GLenum ShaderType, const char* ShaderName) : Shader(ShaderType) {
 
-            this->ShaderObject = glCreateShader(ShaderType);
+            //this->ShaderObject = glCreateShader(ShaderType);
 
-            {
-                char* ShaderPath = AppendCstring::AppendCstring("shaders\\", ShaderName);
-                char* ShaderSource = (char*)SDL_LoadFile(ShaderPath, NULL);
-                delete[] ShaderPath;
+            this->LoadSource(ShaderName);
+            this->Compile();
+        }
 
-                glShaderSource(this->ShaderObject, 1, &ShaderSource, NULL);
-                SDL_free(ShaderSource);
+        inline ~Shader() {
+            glDeleteShader(this->ShaderObject);
+        }
+
+        inline void SetSource(const char* Source) {
+            glShaderSource(this->ShaderObject, 1, &Source, NULL);
+        }
+
+        /*
+        * Looks in the 'shaders' directory, and sets the contents as the shader's source.
+        * Returns true on success, or false on error
+        */
+        void LoadSource(const char* ShaderName) {
+
+            std::filesystem::path ShaderPath = "shaders\\";
+            ShaderPath.append(ShaderName);
+
+            if (!std::filesystem::exists(ShaderPath)) {
+
+                std::string ErrorMessage = "Failed to load shader: ";
+                ErrorMessage += ShaderPath.string();
+                ErrorMessage += "\nFile doesn't exist.\n";
+                ErrorMessage += "Line: ";
+                ErrorMessage += __LINE__;
+                ErrorMessage += " in header: ";
+                ErrorMessage += __BASE_FILE__;
+
+                throw std::runtime_error(ErrorMessage);
             }
+
+            std::ifstream ShaderFile(ShaderPath);
+            if (!ShaderFile.is_open()) {
+
+                std::string ErrorMessage = "Failed to load shader: ";
+                ErrorMessage += ShaderPath.string();
+                ErrorMessage += "\nCouldn't open file for reading.\n";
+                ErrorMessage += "Line: ";
+                ErrorMessage += __LINE__;
+                ErrorMessage += " in header: ";
+                ErrorMessage += __BASE_FILE__;
+
+                throw std::runtime_error(ErrorMessage);
+            }
+
+            ShaderFile.seekg(0, std::ios::end);
+            const std::streamsize FileSize = ShaderFile.tellg();
+            ShaderFile.seekg(0, std::ios::beg);
+
+            auto ShaderSourceBuffer = std::make_unique<char>(FileSize + 1);
+
+            ShaderFile.read(ShaderSourceBuffer.get(), FileSize);
+            ShaderSourceBuffer.get()[FileSize] = '\0';
+
+            this->SetSource(ShaderSourceBuffer.get());
+        }
+
+        /*
+        * Compiles whatever was set with SetSource.
+        */
+        void Compile() {
+
             glCompileShader(this->ShaderObject);
 
             GLint isCompiled;
             glGetShaderiv(this->ShaderObject, GL_COMPILE_STATUS, &isCompiled);
             if (isCompiled == GL_FALSE) {
+
                 GLint maxLength;
                 glGetShaderiv(this->ShaderObject, GL_INFO_LOG_LENGTH, &maxLength);
 
-                GLchar* errorLog = new GLchar[maxLength];
-                glGetShaderInfoLog(this->ShaderObject, maxLength, &maxLength, &errorLog[0]);
+                auto ErrorLogBuffer = std::make_unique<GLchar>(maxLength);
+                glGetShaderInfoLog(this->ShaderObject, maxLength, &maxLength, ErrorLogBuffer.get());
 
-                std::cerr << errorLog << '\n' << std::endl;
-                delete[] errorLog;
+                std::string ErrorMessage = "Failed to compile shader.\nCompilation error log:\n";
+                ErrorMessage += ErrorLogBuffer.get();
+                ErrorMessage.push_back('\n');
+                ErrorMessage.push_back('\n');
 
-                this->~Shader();
+                ErrorMessage += "Line: ";
+                ErrorMessage += __LINE__;
+                ErrorMessage += " in header: ";
+                ErrorMessage += __BASE_FILE__;
+
+                throw std::runtime_error(ErrorMessage);
             }
-        }
-
-        SDL_FORCE_INLINE ~Shader() {
-            glDeleteShader(this->ShaderObject);
         }
 
         GLuint ShaderObject;
@@ -491,99 +561,104 @@ namespace GLClasses {
         //GLuint AttachedShaders[3];
 
     public:
-        SDL_FORCE_INLINE Program() {
+        inline Program() {
             this->glProgram = glCreateProgram();
             //this->AttachedShadersSize = 0;
         }
-        SDL_FORCE_INLINE ~Program() {
+        inline ~Program() {
             glDeleteProgram(this->glProgram);
         }
 
         GLuint glProgram;
 
-        SDL_FORCE_INLINE GLuint GetUniformBlockIndex(const char* UniformBlockName) const {
+        inline GLuint GetUniformBlockIndex(const char* UniformBlockName) const {
             return glGetUniformBlockIndex(this->glProgram, UniformBlockName);
         }
 
 
-        SDL_FORCE_INLINE void UniformBlockBinding(GLuint BlockIndex, GLuint Binding) const {
+        inline void UniformBlockBinding(GLuint BlockIndex, GLuint Binding) const {
             glUniformBlockBinding(this->glProgram, BlockIndex, Binding);
         }
-        SDL_FORCE_INLINE void UniformBlockBinding(GLuint BlockIndex, const GLClasses::UniformBuffer& UniformBuffer) const {
+        inline void UniformBlockBinding(GLuint BlockIndex, const GLClasses::UniformBuffer& UniformBuffer) const {
             this->UniformBlockBinding(BlockIndex, UniformBuffer.BufferIndex);
         }
 
-        SDL_FORCE_INLINE void UniformBlockBinding(const char* BlockName, GLuint Binding) const {
+        inline void UniformBlockBinding(const char* BlockName, GLuint Binding) const {
             this->UniformBlockBinding(this->GetUniformBlockIndex(BlockName), Binding);
         }
-        SDL_FORCE_INLINE void UniformBlockBinding(const char* BlockName, const GLClasses::UniformBuffer& UniformBuffer) const {
+        inline void UniformBlockBinding(const char* BlockName, const GLClasses::UniformBuffer& UniformBuffer) const {
             this->UniformBlockBinding(BlockName, UniformBuffer.BufferIndex);
         }
 
 
-        SDL_FORCE_INLINE GLint GetUniformLocation(const char* UniformName) const {
+        inline GLint GetUniformLocation(const char* UniformName) const {
             return glGetUniformLocation(this->glProgram, UniformName);
         }
 
 
-        static SDL_FORCE_INLINE void IntSetUniform(GLint UniformID, GLint SetTo) {
+        static inline void IntSetUniform(GLint UniformID, GLint SetTo) {
             glUniform1i(UniformID, SetTo);
         }
-        SDL_FORCE_INLINE void IntSetUniform(const char* UniformName, GLint SetTo) const {
+        inline void IntSetUniform(const char* UniformName, GLint SetTo) const {
             glUniform1i(this->GetUniformLocation(UniformName), SetTo);
         }
 
 
-        static SDL_FORCE_INLINE void UintSetUniform(GLint UniformID, GLuint SetTo) {
+        static inline void UintSetUniform(GLint UniformID, GLuint SetTo) {
             glUniform1ui(UniformID, SetTo);
         }
-        SDL_FORCE_INLINE void UintSetUniform(const char* UniformName, GLuint SetTo) const {
+        inline void UintSetUniform(const char* UniformName, GLuint SetTo) const {
             glUniform1ui(this->GetUniformLocation(UniformName), SetTo);
         }
 
 
-        static SDL_FORCE_INLINE void FloatSetUniform(GLint UniformID, GLfloat SetTo) {
+        static inline void FloatSetUniform(GLint UniformID, GLfloat SetTo) {
             glUniform1f(UniformID, SetTo);
         }
-        SDL_FORCE_INLINE void FloatSetUniform(const char* UniformName, GLfloat SetTo) const {
+        inline void FloatSetUniform(const char* UniformName, GLfloat SetTo) const {
             glUniform1f(this->GetUniformLocation(UniformName), SetTo);
         }
 
 
-        static SDL_FORCE_INLINE void DoubleSetUniform(GLint UniformID, GLdouble SetTo) {
+        static inline void DoubleSetUniform(GLint UniformID, GLdouble SetTo) {
             glUniform1d(UniformID, SetTo);
         }
-        SDL_FORCE_INLINE void DoubleSetUniform(const char* UniformName, GLdouble SetTo) const {
+        inline void DoubleSetUniform(const char* UniformName, GLdouble SetTo) const {
             glUniform1d(this->GetUniformLocation(UniformName), SetTo);
         }
 
 
-        static SDL_FORCE_INLINE void Vec3SetUniform(GLint UniformID, const LuauClasses::Vector3& SetTo) {
+        static inline void Vec3SetUniform(GLint UniformID, const LuauClasses::Vector3& SetTo) {
             glUniform3fv(UniformID, 1, &SetTo[0]);
         }
-        SDL_FORCE_INLINE void Vec3SetUniform(const char* UniformName, const LuauClasses::Vector3& SetTo) {
+        inline void Vec3SetUniform(const char* UniformName, const LuauClasses::Vector3& SetTo) {
             this->Vec3SetUniform(this->GetUniformLocation(UniformName), SetTo);
             //glUniform3fv(this->GetUniformLocation(UniformName), 1, &SetTo[0]);
         }
 
 
-        static SDL_FORCE_INLINE void Mat4SetUniform(GLint UniformID, const glm::mat4& SetTo) {
+        static inline void Mat4SetUniform(GLint UniformID, const glm::mat4& SetTo) {
             glUniformMatrix4fv(UniformID, 1, GL_FALSE, &SetTo[0][0]);
         }
-        SDL_FORCE_INLINE void Mat4SetUniform(const char* UniformName, const glm::mat4& SetTo) const {
-            glUniformMatrix4fv(this->GetUniformLocation(UniformName), 1, GL_FALSE, &SetTo[0][0]);
+        inline void Mat4SetUniform(const char* UniformName, const glm::mat4& SetTo) const {
+            this->Mat4SetUniform(this->GetUniformLocation(UniformName), SetTo);
         }
 
         // Misc Uniform Functions
 
-        static SDL_FORCE_INLINE void SetTextureBinding(GLint TextureUniformID, GLint SetBindingTo) {
+        static inline void SetTextureBinding(GLint TextureUniformID, GLint SetBindingTo) {
             glUniform1i(TextureUniformID, SetBindingTo);
         }
-        SDL_FORCE_INLINE void SetTextureBinding(const char* TextureUniformName, GLint SetBindingTo) const {
+        inline void SetTextureBinding(const char* TextureUniformName, GLint SetBindingTo) const {
             this->IntSetUniform(TextureUniformName, SetBindingTo);
         }
 
-        void LinkProgram() const {
+        /*
+        * Links the program, completing the final step before the ShaderProgram is ready to be used.
+        * Make sure you have attatched all the shaders you want to be linked inside the program.
+        * Throws a runtime error when linkage fails.
+        */
+        void LinkProgram() {
 
             glLinkProgram(this->glProgram);
 
@@ -591,21 +666,30 @@ namespace GLClasses {
             glGetProgramiv(this->glProgram, GL_LINK_STATUS, &isLinked);
             if (isLinked == GL_FALSE) {
 
-                std::cout << "linking failed\n";
+                //std::cerr << "Linking failed." << std::endl;
 
-                GLint maxLength;
-                glGetProgramiv(this->glProgram, GL_INFO_LOG_LENGTH, &maxLength);
+                std::string ErrorMessage = "::OPENGL ERROR:: Failed to link program\nLinkage error log:\n";
 
-                char* InfoLog = new char[maxLength];
-                glGetProgramInfoLog(this->glProgram, maxLength, &maxLength, &InfoLog[0]);
+                {
+                    GLint LogSize;
+                    glGetProgramiv(this->glProgram, GL_INFO_LOG_LENGTH, &LogSize);
 
-                std::cout << InfoLog << '\n' << '\n';
-                delete[] InfoLog;
+                    auto ErrorLogBuffer = std::make_unique<GLchar>(LogSize);
+                    glGetProgramInfoLog(this->glProgram, LogSize, &LogSize, ErrorLogBuffer.get());
 
-                this->~Program();
-                return;
+                    ErrorMessage += ErrorLogBuffer.get();
+                }
+
+                ErrorMessage.push_back('\n');
+
+                ErrorMessage += "Line: ";
+                ErrorMessage += __LINE__;
+                ErrorMessage += " in header: ";
+                ErrorMessage += __BASE_FILE__;
+
+                throw std::runtime_error(ErrorMessage);
             }
-
+            /*
             GLsizei AttachedShadersCount;
             GLuint AttachedShaders[2];
             glGetAttachedShaders(this->glProgram, 2, &AttachedShadersCount, AttachedShaders);
@@ -614,20 +698,24 @@ namespace GLClasses {
                 std::cout << "detatch\n";
                 glDetachShader(this->glProgram, AttachedShaders[i]);
             }
-            std::cout << "detatch done\n";
+            std::cout << "detatch done\n";*/
         }
 
-        SDL_FORCE_INLINE void Use() const {
+        inline void Use() const {
             glUseProgram(this->glProgram);
         }
 
-        void AttachShader(GLuint glShader) {
+        static inline void Dispatch(GLuint GroupXSize, GLuint GroupYSize, GLuint GroupZSize) {
+            glDispatchCompute(GroupXSize, GroupYSize, GroupZSize);
+        }
+
+        inline void AttachShader(GLuint glShader) {
             glAttachShader(this->glProgram, glShader);
 
             //this->AttachedShaders[this->AttachedShadersSize] = glShader;
             //++this->AttachedShadersSize;
         }
-        SDL_FORCE_INLINE void AttachShader(const Shader& ShaderObject) {
+        inline void AttachShader(const Shader& ShaderObject) {
             this->AttachShader(ShaderObject.ShaderObject);
         }
 

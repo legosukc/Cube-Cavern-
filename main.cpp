@@ -193,9 +193,9 @@ int _cdecl main() {
         const int InitializedFlags = IMG_Init(IMG_INIT_PNG);
         
         if (!(InitializedFlags & IMG_INIT_PNG)) {
-            std::cerr << "::FATAL!:: " << ":IMG_Init ERROR:" << "Failed to initialize flag IMG_INIT_PNG."
+            std::cerr << "::FATAL!:: " << ":IMG_Init ERROR:" << "Failed to initialize flag IMG_INIT_PNG." << '\n'
                 << "IMG Error: " << IMG_GetError() << '\n'
-                << "::CRASH:: " << "Line " << __LINE__ << " in " << __FILE__
+                << "::CRASH:: " << "Line " << __LINE__ << " in " << __FILE__ << '\n'
                 << "Terminating" << std::endl;
 
             return EXIT_FAILURE;
