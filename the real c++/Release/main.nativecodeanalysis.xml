@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::Height' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::Height</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::InternalFormat' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::InternalFormat</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::TextureObject' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::TextureObject</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::Format' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::Format</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::WrapX' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::WrapX</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::NearFilterType' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::NearFilterType</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::WrapY' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::WrapY</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::FormatType' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::FormatType</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::FarFilterType' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::FarFilterType</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::Texture::Width' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::Texture::{ctor}</FUNCTION>
+    <DECORATED>??0Texture@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>51</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::Texture::Width</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OtherClasses\</FILEPATH>
+      <FILENAME>GLClasses.hpp</FILENAME>
+      <LINE>368</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GLClasses::UniformBuffer::BufferIndex' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GLClasses::UniformBuffer::{ctor}</FUNCTION>
+    <DECORATED>??0UniformBuffer@GLClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>368</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>GLClasses::UniformBuffer::BufferIndex</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+      <FILENAME>file.hpp</FILENAME>
+      <LINE>38</LINE>
+      <COLUMN>27</COLUMN>
+    </SFA>
+    <DEFECTCODE>6385</DEFECTCODE>
+    <DESCRIPTION>Reading invalid data from 'ExecutablePath':  the readable size is '260' bytes, but '-1' bytes may be read.</DESCRIPTION>
+    <FUNCTION>file::Init</FUNCTION>
+    <DECORATED>?Init@file@@YAXXZ</DECORATED>
+    <FUNCLINE>31</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>34</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'ExecutablePath' is an array of 260 elements (260 bytes)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>37</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>27</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'ExecutablePath[i]!=92' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>36</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'i' may equal -1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>27</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'ExecutablePath[i]!=92')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>27</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid read from 'ExecutablePath[-1]', (readable range is 0 to 259)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+      <FILENAME>file.hpp</FILENAME>
+      <LINE>40</LINE>
+      <COLUMN>20</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'ExecutablePath':  the writable size is '260' bytes, but '-1' bytes might be written.</DESCRIPTION>
+    <FUNCTION>file::Init</FUNCTION>
+    <DECORATED>?Init@file@@YAXXZ</DECORATED>
+    <FUNCLINE>31</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>34</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'ExecutablePath' is an array of 260 elements (260 bytes)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>37</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>27</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'ExecutablePath[i]!=92')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>36</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'i' may equal -1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>27</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Exit this loop, ('ExecutablePath[i]!=92' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>40</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'ExecutablePath[-1]', (writable range is 0 to 259)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+      <FILENAME>file.hpp</FILENAME>
+      <LINE>461</LINE>
+      <COLUMN>18</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'NewIndices':  the writable size is 'Indices.public: unsigned int __thiscall std::vector&lt;unsigned int,class std::allocator&lt;unsigned int&gt; &gt;::size(void)const ()*2' bytes, but '4' bytes might be written.</DESCRIPTION>
+    <FUNCTION>file::loadOBJ</FUNCTION>
+    <DECORATED>?loadOBJ@file@@YAPAXPBDAAV?$vector@VVector3@LuauClasses@@V?$allocator@VVector3@LuauClasses@@@std@@@std@@1AAV?$vector@VVector2@LuauClasses@@V?$allocator@VVector2@LuauClasses@@@std@@@3@PAI33@Z</DECORATED>
+    <FUNCLINE>425</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>427</LINE>
+        <COLUMN>22</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>428</LINE>
+        <COLUMN>28</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>429</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>431</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>431</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>438</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>440</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>453</LINE>
+        <COLUMN>28</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>455</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>456</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>458</LINE>
+        <COLUMN>11</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'NewIndices' is an array of 1 elements (2 bytes)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>460</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>460</LINE>
+        <COLUMN>24</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&lt;Indices.size()')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>461</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>460</LINE>
+        <COLUMN>42</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'i' may equal 1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>460</LINE>
+        <COLUMN>24</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Continue this loop, (assume 'i&lt;Indices.size()')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>461</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'i' is an In/Out argument to 'std::vector&lt;unsigned int,std::allocator&lt;unsigned int&gt; &gt;::[]' (declared at c:\program files\microsoft visual studio\2022\community\vc\tools\msvc\14.44.35207\include\vector:1927)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\</FILEPATH>
+        <FILENAME>file.hpp</FILENAME>
+        <LINE>461</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'NewIndices[1]', (writable range is 0 to 0)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OpenGLObjects\</FILEPATH>
+      <FILENAME>ModelBase.hpp</FILENAME>
+      <LINE>96</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'OpenGLObjects::ModelBase::IndicesType' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>OpenGLObjects::ModelBase::{ctor}</FUNCTION>
+    <DECORATED>??0ModelBase@OpenGLObjects@@QAE@XZ</DECORATED>
+    <FUNCLINE>96</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>OpenGLObjects::ModelBase::IndicesType</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OpenGLObjects\</FILEPATH>
+      <FILENAME>ModelBase.hpp</FILENAME>
+      <LINE>96</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'OpenGLObjects::ModelBase::ModelMatrix' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>OpenGLObjects::ModelBase::{ctor}</FUNCTION>
+    <DECORATED>??0ModelBase@OpenGLObjects@@QAE@XZ</DECORATED>
+    <FUNCLINE>96</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>OpenGLObjects::ModelBase::ModelMatrix</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OpenGLObjects\</FILEPATH>
+      <FILENAME>ModelBase.hpp</FILENAME>
+      <LINE>96</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'OpenGLObjects::ModelBase::ModelUniformID' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>OpenGLObjects::ModelBase::{ctor}</FUNCTION>
+    <DECORATED>??0ModelBase@OpenGLObjects@@QAE@XZ</DECORATED>
+    <FUNCLINE>96</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>OpenGLObjects::ModelBase::ModelUniformID</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OpenGLObjects\</FILEPATH>
+      <FILENAME>ModelBase.hpp</FILENAME>
+      <LINE>96</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'OpenGLObjects::ModelBase::IndicesLen' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>OpenGLObjects::ModelBase::{ctor}</FUNCTION>
+    <DECORATED>??0ModelBase@OpenGLObjects@@QAE@XZ</DECORATED>
+    <FUNCLINE>96</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>OpenGLObjects::ModelBase::IndicesLen</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OpenGLObjects\</FILEPATH>
+      <FILENAME>TexturedModelBase.hpp</FILENAME>
+      <LINE>67</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'OpenGLObjects::TexturedModelBase::Texture' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>OpenGLObjects::TexturedModelBase::{ctor}</FUNCTION>
+    <DECORATED>??0TexturedModelBase@OpenGLObjects@@QAE@XZ</DECORATED>
+    <FUNCLINE>67</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>OpenGLObjects::TexturedModelBase::Texture</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OpenGLObjects\</FILEPATH>
+      <FILENAME>ParentedColoredModelBase.hpp</FILENAME>
+      <LINE>53</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'OpenGLObjects::ParentedColoredModelBase&lt;OpenGLObjects::ViewArmRight&gt;::Parent' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>OpenGLObjects::ParentedColoredModelBase&lt;OpenGLObjects::ViewArmRight&gt;::{ctor}</FUNCTION>
+    <DECORATED>??0?$ParentedColoredModelBase@VViewArmRight@OpenGLObjects@@@OpenGLObjects@@QAE@XZ</DECORATED>
+    <FUNCLINE>53</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>OpenGLObjects::ParentedColoredModelBase&lt;OpenGLObjects::ViewArmRight&gt;::Parent</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\OpenGLObjects\</FILEPATH>
+      <FILENAME>ParentedTexturedModelBase.hpp</FILENAME>
+      <LINE>47</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'OpenGLObjects::ParentedTexturedModelBase&lt;OpenGLObjects::ViewArmRight&gt;::Texture' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>OpenGLObjects::ParentedTexturedModelBase&lt;OpenGLObjects::ViewArmRight&gt;::{ctor}</FUNCTION>
+    <DECORATED>??0?$ParentedTexturedModelBase@VViewArmRight@OpenGLObjects@@@OpenGLObjects@@QAE@XZ</DECORATED>
+    <FUNCLINE>47</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>OpenGLObjects::ParentedTexturedModelBase&lt;OpenGLObjects::ViewArmRight&gt;::Texture</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\SDLClasses\</FILEPATH>
+      <FILENAME>Window.hpp</FILENAME>
+      <LINE>26</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'SDLClasses::Window::HasMouseFocus' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>SDLClasses::Window::{ctor}</FUNCTION>
+    <DECORATED>??0Window@SDLClasses@@QAE@PBDHHHHIMM@Z</DECORATED>
+    <FUNCLINE>26</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>SDLClasses::Window::HasMouseFocus</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\SDLClasses\</FILEPATH>
+      <FILENAME>Window.hpp</FILENAME>
+      <LINE>26</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'SDLClasses::Window::HasKeyboardFocus' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>SDLClasses::Window::{ctor}</FUNCTION>
+    <DECORATED>??0Window@SDLClasses@@QAE@PBDHHHHIMM@Z</DECORATED>
+    <FUNCLINE>26</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>SDLClasses::Window::HasKeyboardFocus</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+      <FILENAME>ItemBase.hpp</FILENAME>
+      <LINE>133</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'HoverText':  the writable size is 'HoverTextAllocSize*1' bytes, but '6' bytes might be written.</DESCRIPTION>
+    <FUNCTION>ItemClasses::ItemBase&lt;OpenGLObjects::Stick,GameClasses::Player&gt;::GetHoverText</FUNCTION>
+    <DECORATED>?GetHoverText@?$ItemBase@VStick@OpenGLObjects@@VPlayer@GameClasses@@@ItemClasses@@UAEPADXZ</DECORATED>
+    <FUNCLINE>119</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>121</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>122</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>125</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>128</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>130</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>131</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'HoverText' is a 1 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'HoverText' is an In/Out argument to 'strcpy' (declared at c:\program files (x86)\windows kits\10\include\10.0.26100.0\ucrt\string.h:130)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'HoverText', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+      <FILENAME>ItemBase.hpp</FILENAME>
+      <LINE>133</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'HoverText':  the writable size is 'HoverTextAllocSize*1' bytes, but '6' bytes might be written.</DESCRIPTION>
+    <FUNCTION>ItemClasses::ItemBase&lt;OpenGLObjects::Dagger,GameClasses::Player&gt;::GetHoverText</FUNCTION>
+    <DECORATED>?GetHoverText@?$ItemBase@VDagger@OpenGLObjects@@VPlayer@GameClasses@@@ItemClasses@@UAEPADXZ</DECORATED>
+    <FUNCLINE>119</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>121</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>122</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>125</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>128</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>130</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>131</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'HoverText' is a 1 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'HoverText' is an In/Out argument to 'strcpy' (declared at c:\program files (x86)\windows kits\10\include\10.0.26100.0\ucrt\string.h:130)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'HoverText', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+      <FILENAME>NotPhysicalItemBase.hpp</FILENAME>
+      <LINE>31</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'ItemClasses::NotPhysicalItemBase&lt;GameClasses::Player&gt;::Owner' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>ItemClasses::NotPhysicalItemBase&lt;GameClasses::Player&gt;::{ctor}</FUNCTION>
+    <DECORATED>??0?$NotPhysicalItemBase@VPlayer@GameClasses@@@ItemClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>31</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>ItemClasses::NotPhysicalItemBase&lt;GameClasses::Player&gt;::Owner</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+      <FILENAME>ItemBase.hpp</FILENAME>
+      <LINE>133</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'HoverText':  the writable size is 'HoverTextAllocSize*1' bytes, but '6' bytes might be written.</DESCRIPTION>
+    <FUNCTION>ItemClasses::ItemBase&lt;OpenGLObjects::ModelBase,GameClasses::Player&gt;::GetHoverText</FUNCTION>
+    <DECORATED>?GetHoverText@?$ItemBase@VModelBase@OpenGLObjects@@VPlayer@GameClasses@@@ItemClasses@@UAEPADXZ</DECORATED>
+    <FUNCLINE>119</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>121</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>122</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>125</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>128</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>130</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>131</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'HoverText' is a 1 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'HoverText' is an In/Out argument to 'strcpy' (declared at c:\program files (x86)\windows kits\10\include\10.0.26100.0\ucrt\string.h:130)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'HoverText', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+      <FILENAME>ItemBase.hpp</FILENAME>
+      <LINE>133</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'HoverText':  the writable size is 'HoverTextAllocSize*1' bytes, but '6' bytes might be written.</DESCRIPTION>
+    <FUNCTION>ItemClasses::ItemBase&lt;OpenGLObjects::ObjectBase,void&gt;::GetHoverText</FUNCTION>
+    <DECORATED>?GetHoverText@?$ItemBase@VObjectBase@OpenGLObjects@@X@ItemClasses@@UAEPADXZ</DECORATED>
+    <FUNCLINE>119</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>121</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>122</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>125</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>128</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>130</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>131</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'HoverText' is a 1 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'HoverText' is an In/Out argument to 'strcpy' (declared at c:\program files (x86)\windows kits\10\include\10.0.26100.0\ucrt\string.h:130)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+        <FILENAME>ItemBase.hpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'HoverText', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+      <FILENAME>ItemBase.hpp</FILENAME>
+      <LINE>26</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'ItemClasses::ItemBase&lt;OpenGLObjects::Stick,GameClasses::Player&gt;::GLObject' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>ItemClasses::ItemBase&lt;OpenGLObjects::Stick,GameClasses::Player&gt;::{ctor}</FUNCTION>
+    <DECORATED>??0?$ItemBase@VStick@OpenGLObjects@@VPlayer@GameClasses@@@ItemClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>26</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>ItemClasses::ItemBase&lt;OpenGLObjects::Stick,GameClasses::Player&gt;::GLObject</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\JaiEs\OneDrive\Documents\VS\C&amp;C++\the real c++\ItemClasses\</FILEPATH>
+      <FILENAME>ItemBase.hpp</FILENAME>
+      <LINE>26</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'ItemClasses::ItemBase&lt;OpenGLObjects::Dagger,GameClasses::Player&gt;::GLObject' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>ItemClasses::ItemBase&lt;OpenGLObjects::Dagger,GameClasses::Player&gt;::{ctor}</FUNCTION>
+    <DECORATED>??0?$ItemBase@VDagger@OpenGLObjects@@VPlayer@GameClasses@@@ItemClasses@@QAE@XZ</DECORATED>
+    <FUNCLINE>26</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>ItemClasses::ItemBase&lt;OpenGLObjects::Dagger,GameClasses::Player&gt;::GLObject</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

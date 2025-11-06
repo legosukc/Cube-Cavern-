@@ -1,0 +1,139 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "MSVC Code Analysis",
+          "version": "14.44.35214.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/jaies/onedrive/documents/vs/c&c++/the real c++/itemclasses/itembase.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "81bc0cbbe3c6f70c26c61c62d6b54e16114905064df7d1a89fd7c23928a9ac5a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jaies/onedrive/documents/vs/c&c++/the real c++/itemclasses/itembase.hpp"
+          },
+          "hashes": {
+            "sha-256": "af5d7faf7f57f5bedbacc7c8900ff70f37be6b7b11f73e7453229ae33f5e044e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jaies/onedrive/documents/vs/c&c++/the real c++/itemclasses/notphysicalitembase.hpp"
+          },
+          "hashes": {
+            "sha-256": "1eb0507c149a98ed2558da2654c2865658a026775bbc1e1c2e7aba1dfd206929"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jaies/onedrive/documents/vs/c&c++/the real c++/enums/itemtypeenums.hpp"
+          },
+          "hashes": {
+            "sha-256": "fc2529f6412b0e6109a6386b5f8a7a21e0b19f2d00b5764fd0f8a41003a97227"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/clib/include/sdl2/sdl_stdinc.h"
+          },
+          "hashes": {
+            "sha-256": "3e86c3b44908892b55809101915b30e65706676f026d9c60e8a38d5f7c69ba02"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/clib/include/sdl2/sdl_config.h"
+          },
+          "hashes": {
+            "sha-256": "58fae866960dd4b2591ef3b0ae516fcca7cb6c9dcd9cd16c2c47f767b6c88dd7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/clib/include/sdl2/sdl_platform.h"
+          },
+          "hashes": {
+            "sha-256": "9ce62823791d7a16b9ad17ad11f4de8dcbcde7918f67bf6d1dd4fc625b69e50c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/clib/include/sdl2/begin_code.h"
+          },
+          "hashes": {
+            "sha-256": "9803dab29fb4522ce3500ab789260e9622df6307ce90f92ad20c1808e19c4e7b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/clib/include/sdl2/close_code.h"
+          },
+          "hashes": {
+            "sha-256": "4599e9cedba7451ff07a6306f0b7531beed05b1c5a65b1a2613d1b771be43fda"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/clib/include/sdl2/sdl_config_windows.h"
+          },
+          "hashes": {
+            "sha-256": "71b3e9c5e56f0e2f4f70fb65210676bf6a757adddc40dda7181f199aa4be7b31"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jaies/onedrive/documents/vs/c&c++/the real c++/luauclasses/vector3.hpp"
+          },
+          "hashes": {
+            "sha-256": "1dc04c1abf6f6899b46dd7f154e5dee430be089c7eb796e37054b6c8c01391e5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/clib/include/glad/glad.h"
+          },
+          "hashes": {
+            "sha-256": "e18b419a90c3d1e06354a766f9ece5b26838e4270cd37ce31137ccebe180e93c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/clib/include/khr/khrplatform.h"
+          },
+          "hashes": {
+            "sha-256": "7b1e01aaa7ad8f6fc34b5c7bdf79ebf5189bb09e2c4d2e79fc5d350623d11e83"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jaies/onedrive/documents/vs/c&c++/the real c++/functionheaders/appendcstring.hpp"
+          },
+          "hashes": {
+            "sha-256": "ff79045d2ce47a782ffcae0009497d4f62fe3d77faf5bc8e5926fcef5863033f"
+          }
+        }
+      ]
+    }
+  ]
+}

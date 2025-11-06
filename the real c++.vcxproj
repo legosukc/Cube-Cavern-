@@ -316,6 +316,9 @@
     <ClInclude Include="SDLClasses\Window.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
     <None Include="Release\Enemies.lua" />
     <None Include="Release\EnemyClasses\EnemyBase.lua" />
     <None Include="Release\GameLoop.lua" />
@@ -342,6 +345,9 @@
     <Image Include="Release\textures\missing.bmp" />
     <Image Include="Release\textures\test.bmp" />
     <Image Include="Release\textures\viewarm_palette.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="UNLICENSE.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

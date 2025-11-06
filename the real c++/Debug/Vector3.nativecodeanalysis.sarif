@@ -1,0 +1,43 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "MSVC Code Analysis",
+          "version": "14.44.35214.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/jaies/onedrive/documents/vs/c&c++/the real c++/luauclasses/vector3.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "e47059b2df9b3877a116909e189a794510c70b358471ed20ce89c2c14b40ea04"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jaies/onedrive/documents/vs/c&c++/the real c++/luauclasses/vector3.hpp"
+          },
+          "hashes": {
+            "sha-256": "1dc04c1abf6f6899b46dd7f154e5dee430be089c7eb796e37054b6c8c01391e5"
+          }
+        }
+      ]
+    }
+  ]
+}
