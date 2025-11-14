@@ -35,7 +35,7 @@ welcome to inheritance hell.
 - multiplayer? (No)
 - literally everything oh my goddddd.
 
-- ![alt text](https://github.com/legosukc/Cube-Cavern-/blob/master/awesomesauce/ohmygodbruh.jpg?raw=true)
+![alt text](https://github.com/legosukc/Cube-Cavern-/blob/master/awesomesauce/ohmygodbruh.jpg?raw=true)
 
 ## NOTES
 
@@ -58,6 +58,8 @@ and about the compiler being able to mostly predict those circumstances, well, i
 ALSO, i want to maximize the performance of the Lua C Functions, bc modding reasons, of course.
 
 i know i'm dragging it a lot but, my laptop shit yo cpu running at 0.40ghz kinda bad yo
+
+yap over
 
 
 ## [Building]
