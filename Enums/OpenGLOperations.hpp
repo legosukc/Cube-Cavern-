@@ -1,36 +1,48 @@
 #ifndef _ENUMS_OPENGLOPERATIONS
 #define _ENUMS_OPENGLOPERATIONS
 
+#include "EnumBase.hpp"
+#include "../LuaClasses/LuaContext.hpp"
+
+extern "C" {
+#include <lua-5.4.2/lua.h>
+}
+
 #include <glad/glad.h>
 
-#include "../LuaClasses/LuaContext.hpp"
-#include "../LuaClasses/LuaTable.hpp"
-#include "../LuaClasses/LuaGlobalTable.hpp"
+namespace Enums {
 
-namespace Enums::OpenGLOperations {
+	struct OpenGLOperations : public Enums::EnumBase {
 
-	constexpr inline bool IsValidEnum(GLenum Enum) {
-		return (Enum == GL_ZERO) || ((Enum >= GL_KEEP) && (Enum <= GL_DECR)) || (Enum == GL_INCR_WRAP) || (Enum == GL_DECR_WRAP) || (Enum == GL_INVERT);
+		static inline const char* EnumCatagoryName = "OpenGLOperations";
+		static inline const size_t ElementCount = 8;
+
+		template<typename T>
+		constexpr static inline bool IsValidEnum(T Enum);
+
+		static inline void AddToLuaTable(LuaClasses::LuaContext& Context);
+	};
+
+	template<typename T>
+	constexpr bool OpenGLOperations::IsValidEnum(T Enum) {
+		return (Enum == GL_ZERO) || ((Enum >= GL_KEEP) && (Enum <= GL_DECR))
+			|| (Enum == GL_INCR_WRAP) || (Enum == GL_DECR_WRAP) || (Enum == GL_INVERT);
 	}
 
-	inline void AddToLuaTable(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
+	void OpenGLOperations::AddToLuaTable(LuaClasses::LuaContext& Context) {
 
-		LuaClasses::LuaTable EnumCatagoryTable(&Context, 0, 8);
+		Context.SetTableField<lua_Integer>(-2, "GL_ZERO", GL_ZERO);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_ZERO", GL_ZERO);
+		Context.SetTableField<lua_Integer>(-2, "GL_KEEP", GL_KEEP);
+		Context.SetTableField<lua_Integer>(-2, "GL_REPLACE", GL_REPLACE);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_KEEP", GL_KEEP);
-		EnumCatagoryTable.SetElementWithLiteral("GL_REPLACE", GL_REPLACE);
+		Context.SetTableField<lua_Integer>(-2, "GL_INCR", GL_INCR);
+		Context.SetTableField<lua_Integer>(-2, "GL_DECR", GL_DECR);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_INCR", GL_INCR);
-		EnumCatagoryTable.SetElementWithLiteral("GL_DECR", GL_DECR);
+		Context.SetTableField<lua_Integer>(-2, "GL_INCR_WRAP", GL_INCR_WRAP);
+		Context.SetTableField<lua_Integer>(-2, "GL_DECR_WRAP", GL_DECR_WRAP);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_INCR_WRAP", GL_INCR_WRAP);
-		EnumCatagoryTable.SetElementWithLiteral("GL_DECR_WRAP", GL_DECR_WRAP);
-
-		EnumCatagoryTable.SetElementWithLiteral("GL_INVERT", GL_INVERT);
-
-		EnumsTable.SetSubtable("OpenGLOperations", EnumCatagoryTable);
+		Context.SetTableField<lua_Integer>(-2, "GL_INVERT", GL_INVERT);
 	}
 }
 

@@ -2,6 +2,7 @@
 #define _ENUMS_MAIN
 
 #include "../LuaClasses/LuaContext.hpp"
+#include "../LuaClasses/LuaTable.hpp"
 #include "../LuaClasses/LuaGlobalTable.hpp"
 
 #include "../LuaHelper.hpp"
@@ -32,35 +33,46 @@ static struct {
 		return 1;
 	}
 
+	template<class Enum>
+	static void AddEnumNamespace(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
+
+		LuaClasses::LuaTable EnumSubtable(&Context, 0, Enum::ElementCount);
+
+		Enum::AddToLuaTable(Context);
+
+		//Context.SetTableField(EnumSubtable.TableObject, Enum::EnumCatagoryName);
+		EnumsTable.SetSubtable(Enum::EnumCatagoryName, EnumSubtable);
+	}
+
 } _private;
 
 namespace Enums {
 
 	inline void luaopen_Enums(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
 
-		Enums::OpenGL::
-
-		Enums::ItemTypes::AddToLuaTable(Context, EnumsTable);
-
-		Enums::OpenGLTypes::AddToLuaTable(Context, EnumsTable);
-		Enums::OpenGLShaderTypes::AddToLuaTable(Context, EnumsTable);
-
-		Enums::OpenGLComparison::AddToLuaTable(Context, EnumsTable);
-		Enums::OpenGLOperations::AddToLuaTable(Context, EnumsTable);
-
-		Enums::OpenGLDrawModes::AddToLuaTable(Context, EnumsTable);
-		Enums::OpenGLTextureFormats::AddToLuaTable(Context, EnumsTable);
-		Enums::OpenGLBuffers::AddToLuaTable(Context, EnumsTable);
-
-
+		typedef decltype(_private) Private;
 		
-		lua_createtable(Context.ContextObject, 0, 2);
+
+		Private::AddEnumNamespace<Enums::ItemTypes>(Context, EnumsTable);
+
+		Private::AddEnumNamespace<Enums::OpenGLTypes>(Context, EnumsTable);
+		Private::AddEnumNamespace<Enums::OpenGLShaderTypes>(Context, EnumsTable);
+
+		Private::AddEnumNamespace<Enums::OpenGLComparison>(Context, EnumsTable);
+		Private::AddEnumNamespace<Enums::OpenGLOperations>(Context, EnumsTable);
+
+		Private::AddEnumNamespace<Enums::OpenGLDrawModes>(Context, EnumsTable);
+		Private::AddEnumNamespace<Enums::OpenGLTextureFormats>(Context, EnumsTable);
+		Private::AddEnumNamespace<Enums::OpenGLBuffers>(Context, EnumsTable);
+
+
+		Context.PushNewTable(0, 2);
 		const LuaTableObject FreezeMetatableStackIndex = Context.GetStackTop();
 		
-		lua_newtable(Context.ContextObject);
+		Context.PushNewTable();
 		lua_setfield(Context.ContextObject, -2, "__metatable");
 
-		LuaHelper::SetTableIndex(Context.ContextObject, "__newindex", _private.NewIndexError);
+		LuaHelper::SetTableIndex(Context.ContextObject, "__newindex", Private::NewIndexError);
 
 
 

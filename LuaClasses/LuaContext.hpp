@@ -18,17 +18,20 @@ namespace LuaClasses {
     public:
 
         inline LuaContext();
+        inline LuaContext(lua_State* Context);
+
         inline ~LuaContext();
 
         lua_State* ContextObject;
 
+        inline operator lua_State*();
 
         // Lua Stack Helpers
 
-        inline int GetStackSize();
-        inline LuaObject GetStackTop();
+        inline int GetStackSize() const;
+        inline LuaObject GetStackTop() const;
 
-        inline void PrintStackSize();
+        inline void PrintStackSize() const;
 
 
         inline void PushOntoStack(const char* Value);
@@ -43,14 +46,16 @@ namespace LuaClasses {
 
         inline void PushNilOntoStack();
 
-
-        inline void PopStack(int PopOffAmount = 1);
+        inline void ShrinkStackTo(int ShrinkToIndex);
+        constexpr inline void PopStack(int PopOffAmount = 1);
 
 
 
         // Global Lua Helpers
 
         inline LuaObject GetGlobal(const char* GlobalName) const;
+
+        inline void SetGlobal(const char* GlobalName);
 
         template<typename SetType>
         inline void SetGlobal(SetType Value, const char* GlobalName);
@@ -71,13 +76,21 @@ namespace LuaClasses {
 
         inline lua_CFunction GetCFunction(LuaCFunctionObject Object) const;
 
-        inline lua_State* GetThread(LuaThreadObject Object) const;
+        inline LuaContext GetThread(LuaThreadObject Object);
+        inline const LuaContext GetThread(LuaThreadObject Object) const;
 
-        inline void* GetUserdata(LuaUserdataObject Object) const;
+        inline void* GetUserdata(LuaUserdataObject Object);
+        inline const void* GetUserdata(LuaUserdataObject Object) const;
 
         inline const void* GetPointer(LuaPointerObject Object) const;
 
 
+        // Types
+
+        inline int GetTypeEnum(LuaObject StackIndex) const;
+        inline const char* GetNameFromTypeEnum(int TypeEnum) const;
+
+        inline const char* GetTypename(LuaObject StackIndex) const;
 
         // Type Checking
 
@@ -104,6 +117,46 @@ namespace LuaClasses {
         inline void* PushNewUserdata(size_t UserdataSize);
 
 
+        // Table Functions
+
+        // The value at the top of the stack is what gets assigned to the field.
+        inline void SetTableField(LuaTableObject TableStackIndex, const char* Field);
+
+        template<typename T>
+        inline void SetTableField(LuaTableObject TableStackIndex, const char* Field, T SetTo);
+
+
+        // The value at the top of the stack is what gets assigned to the index.
+        inline void SetTableIndex(LuaTableObject TableStackIndex, lua_Integer Index);
+
+        template<typename T>
+        inline void SetTableIndex(LuaTableObject TableStackIndex, lua_Integer Index, T SetTo);
+
+        /*
+        * Uses the lua stack for the parameters.
+        * The 2 values after the table in the lua stack are used as the following:
+        * 1st: (TableStackIndex) - must be a table or a userdata with a metatable containing a "__newindex" metamethod.
+        * 2nd: Index
+        * 3rd: Assignment
+        * Pops every value after the table off the lua stack.
+        */
+        inline void SetTableElement(LuaTableObject TableStackIndex);
+
+        // Puts the value from the index at the top of the lua stack.
+        inline LuaObject GetTableField(LuaTableObject TableStackIndex, const char* Field) const;
+
+        // Puts the value from the index at the top of the lua stack.
+        inline LuaObject GetTableIndex(LuaTableObject TableStackIndex, lua_Integer Index) const;
+
+
+        /*
+        * Uses the lua stack for the parameters.
+        * The value after the table in the lua stack is used as the index.
+        * Pops every value after the table off the lua stack.
+        */
+        inline LuaObject GetTableElement(LuaTableObject TableStackIndex) const;
+
+
         // Other
 
         inline void PrintLuaError(const char* ErrorCatagory) const;
@@ -119,48 +172,51 @@ namespace LuaClasses {
         this->ContextObject = luaL_newstate();
         luaL_openlibs(this->ContextObject);
 
-        luaopen_base(this->ContextObject);             /* opens the basic library */
-        luaopen_table(this->ContextObject);            /* opens the table library */
-        luaopen_io(this->ContextObject);               /* opens the I/O library */
-        luaopen_string(this->ContextObject);           /* opens the string lib. */
-        luaopen_math(this->ContextObject);             /* opens the math lib. */
+        luaopen_base(this->ContextObject);
+        luaopen_table(this->ContextObject);
+        //luaopen_io(this->ContextObject);
+        luaopen_string(this->ContextObject);
+        luaopen_math(this->ContextObject);
     };
+
+    LuaContext::LuaContext(lua_State* Context) {
+        this->ContextObject = Context;
+    }
 
     LuaContext::~LuaContext() {
         lua_close(this->ContextObject);
     };
 
 
-    //inline lua_State*(LuaContext Context) {
-        //return Context->ContextObject;
-    //}
-
+    LuaContext::operator lua_State*() {
+        return this->ContextObject;
+    }
 
 
     // Lua Stack Helpers
 
-    int LuaContext::GetStackSize() {
+    int LuaContext::GetStackSize() const {
         return lua_gettop(this->ContextObject);
     }
-    LuaObject LuaContext::GetStackTop() {
+    LuaObject LuaContext::GetStackTop() const {
         return lua_gettop(this->ContextObject);
     }
 
-    void LuaContext::PrintStackSize() {
+    void LuaContext::PrintStackSize() const {
         std::cout << "Lua Stacksize: " << this->GetStackSize() << '\n';
     }
 
 
-    void LuaContext::PushOntoStack(const char* Value) {
-        lua_pushstring(this->ContextObject, Value);
+    void LuaContext::PushOntoStack(const char* String) {
+        lua_pushstring(this->ContextObject, String);
     }
 
-    void LuaContext::PushOntoStack(lua_Integer Value) {
-        lua_pushinteger(this->ContextObject, Value);
+    void LuaContext::PushOntoStack(lua_Integer Integer) {
+        lua_pushinteger(this->ContextObject, Integer);
     }
 
-    void LuaContext::PushOntoStack(lua_Number Value) {
-        lua_pushnumber(this->ContextObject, Value);
+    void LuaContext::PushOntoStack(lua_Number Float) {
+        lua_pushnumber(this->ContextObject, Float);
     }
 
     void LuaContext::PushOntoStack(lua_CFunction Function) {
@@ -171,8 +227,9 @@ namespace LuaClasses {
         lua_pushlightuserdata(this->ContextObject, Userdata);
     }
 
-    void LuaContext::PushStringLiteral(const char* String) {
-        lua_pushliteral(this->ContextObject, String);
+    void LuaContext::PushStringLiteral(const char* StringLiteral) {
+        //lua_pushliteral(this->ContextObject, String);
+        this->PushOntoStack(StringLiteral);
     }
 
     void LuaContext::PushNilOntoStack() {
@@ -184,8 +241,12 @@ namespace LuaClasses {
     }
 
 
-    void LuaContext::PopStack(int PopOffAmount) {
-        lua_pop(this->ContextObject, PopOffAmount);
+    void LuaContext::ShrinkStackTo(int ShrinkToIndex) {
+        lua_settop(this->ContextObject, ShrinkToIndex);
+    }
+
+    constexpr void LuaContext::PopStack(int PopOffAmount) {
+        this->ShrinkStackTo(-PopOffAmount - 1);
     }
 
 
@@ -196,11 +257,14 @@ namespace LuaClasses {
         return lua_getglobal(this->ContextObject, GlobalName);
     }
 
+    void LuaContext::SetGlobal(const char* GlobalName) {
+        lua_setglobal(this->ContextObject, GlobalName);
+    }
+
     template<typename SetType>
     void LuaContext::SetGlobal(SetType Value, const char* GlobalName) {
         this->PushOntoStack(Value);
-        lua_setglobal(this->ContextObject, GlobalName);
-        this->PopStack();
+        this->SetGlobal(GlobalName);
     }
 
     void LuaContext::PushDefinedMetatable(const char* MetatableName) {
@@ -230,16 +294,37 @@ namespace LuaClasses {
         return lua_tocfunction(this->ContextObject, Object);
     }
 
-    lua_State* LuaContext::GetThread(LuaThreadObject Object) const {
-        return lua_tothread(this->ContextObject, Object);
+    LuaContext LuaContext::GetThread(LuaThreadObject Object) {
+        return LuaContext(lua_tothread(this->ContextObject, Object));
+    }
+    const LuaContext LuaContext::GetThread(LuaThreadObject Object) const {
+        return const LuaContext(lua_tothread(this->ContextObject, Object));
     }
 
-    void* LuaContext::GetUserdata(LuaUserdataObject Object) const {
+    void* LuaContext::GetUserdata(LuaUserdataObject Object) {
         return lua_touserdata(this->ContextObject, Object);
+    }
+    const void* LuaContext::GetUserdata(LuaUserdataObject Object) const {
+        return const_cast<const void*>(lua_touserdata(this->ContextObject, Object));
     }
 
     const void* LuaContext::GetPointer(LuaPointerObject Object) const {
         return lua_topointer(this->ContextObject, Object);
+    }
+
+
+
+    // Types
+
+    int LuaContext::GetTypeEnum(LuaObject StackIndex) const {
+        return lua_type(this->ContextObject, StackIndex);
+    }
+    const char* LuaContext::GetNameFromTypeEnum(int TypeEnum) const {
+        return lua_typename(this->ContextObject, TypeEnum);
+    }
+
+    const char* LuaContext::GetTypename(LuaObject StackIndex) const {
+        return this->GetNameFromTypeEnum(this->GetTypeEnum(StackIndex));
     }
 
 
@@ -294,6 +379,65 @@ namespace LuaClasses {
 
     void* LuaContext::PushNewUserdata(size_t UserdataSize) {
         return lua_newuserdata(this->ContextObject, UserdataSize);
+    }
+
+
+
+    // Table Functions
+
+    // The value at the top of the stack is what gets assigned to the field.
+    void LuaContext::SetTableField(LuaTableObject TableStackIndex, const char* Field) {
+        lua_setfield(this->ContextObject, TableStackIndex, Field);
+    }
+
+    template<typename T>
+    void LuaContext::SetTableField(LuaTableObject TableStackIndex, const char* Field, T SetTo) {
+        this->PushOntoStack(SetTo);
+        this->SetTableField(TableStackIndex, Field);
+    }
+
+
+    // The value at the top of the stack is what gets assigned to the index.
+    void LuaContext::SetTableIndex(LuaTableObject TableStackIndex, lua_Integer Index) {
+        lua_seti(this->ContextObject, TableStackIndex, Index);
+    }
+
+    template<typename T>
+    void LuaContext::SetTableIndex(LuaTableObject TableStackIndex, lua_Integer Index, T SetTo) {
+        this->PushOntoStack(SetTo);
+        this->SetTableIndex(TableStackIndex, Index);
+    }
+
+    /*
+    * Uses the lua stack for the parameters.
+    * The 2 values after the table in the lua stack are used as the following:
+    * 1st: (TableStackIndex) - must be a table or a userdata with a metatable containing a "__newindex" metamethod.
+    * 2nd: Index
+    * 3rd: Assignment
+    * Pops every value after the table off the lua stack.
+    */
+    void LuaContext::SetTableElement(LuaTableObject TableStackIndex) {
+        lua_settable(this->ContextObject, TableStackIndex);
+    }
+
+    // Puts the value from the index at the top of the lua stack.
+    LuaObject LuaContext::GetTableField(LuaTableObject TableStackIndex, const char* Field) const {
+        return lua_getfield(this->ContextObject, TableStackIndex, Field);
+    }
+
+    // Puts the value from the index at the top of the lua stack.
+    LuaObject LuaContext::GetTableIndex(LuaTableObject TableStackIndex, lua_Integer Index) const {
+        return lua_geti(this->ContextObject, TableStackIndex, Index);
+    }
+
+
+    /*
+    * Uses the lua stack for the parameters.
+    * The value after the table in the lua stack is used as the index.
+    * Pops every value after the table off the lua stack.
+    */
+    LuaObject LuaContext::GetTableElement(LuaTableObject TableStackIndex) const {
+        return lua_gettable(this->ContextObject, TableStackIndex);
     }
 
 

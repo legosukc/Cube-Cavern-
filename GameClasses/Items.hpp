@@ -37,7 +37,7 @@ namespace GameClasses::Items {
 
 #include <filesystem>
 
-#include "FunctionHeaders/LuaHelper.hpp"
+#include "../LuaHelper.hpp"
 
 #include "LuaClasses/LuaContext.hpp"
 #include "LuaClasses/LuaGlobalTable.hpp"
@@ -63,7 +63,6 @@ namespace _Game_Items_CFunctions {
 
         lua_getglobal(Context, "Game");
 
-        LuaHelper::
         lua_pushliteral(Context, "Items");
         lua_gettable(Context, -2);
 
@@ -187,14 +186,14 @@ namespace Game::Items {
 
         AssetsItemClasses.SetElement("__index", [](lua_State* Context) {
 
-            if (!lua_isstring(Context, -1)) {
+            if (!lua_isstring(Context, 2)) {
 
-                lua_pop(Context, 2);
+                lua_settop(Context, 0);
                 lua_pushnil(Context);
                 return 1;
             }
 
-            const char* RequiringString = lua_tostring(Context, -1);
+            const char* RequiringString = lua_tostring(Context, 2);
 
             if (lua_istable(Context, lua_gettable(Context, -2))) {
                 return 1;

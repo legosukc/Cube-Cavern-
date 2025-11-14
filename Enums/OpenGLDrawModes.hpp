@@ -1,27 +1,38 @@
 #ifndef _ENUMS_OPENGLDRAWMODES
 #define _ENUMS_OPENGLDRAWMODES
 
+#include "EnumBase.hpp"
+#include "../LuaClasses/LuaContext.hpp"
+
+extern "C" {
+#include <lua-5.4.2/lua.h>
+}
+
 #include <glad/glad.h>
 
-#include "../LuaClasses/LuaContext.hpp"
-#include "../LuaClasses/LuaTable.hpp"
-#include "../LuaClasses/LuaGlobalTable.hpp"
+namespace Enums {
 
-namespace Enums::OpenGLDrawModes {
+	struct OpenGLDrawModes : public Enums::EnumBase {
 
-	constexpr inline bool IsValidEnum(GLenum Enum) {
-		return (Enum <= GL_LINES) || (Enum == GL_TRIANGLES);
+		static inline const char* EnumCatagoryName = "OpenGLDrawModes";
+		static inline const size_t ElementCount = 3;
+
+		template<typename T>
+		constexpr static inline bool IsValidEnum(T Enum);
+
+		static inline void AddToLuaTable(LuaClasses::LuaContext& Context);
+	};
+
+	template<typename T>
+	constexpr bool OpenGLDrawModes::IsValidEnum(T Enum) {
+		return (Enum == GL_POINTS) || (Enum == GL_LINES) || (Enum == GL_TRIANGLES);
 	}
 
-	inline void AddToLuaTable(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
+	void OpenGLDrawModes::AddToLuaTable(LuaClasses::LuaContext& Context) {
 
-		LuaClasses::LuaTable EnumCatagoryTable(&Context, 0, 3);
-
-		EnumCatagoryTable.SetElementWithLiteral("GL_POINTS", GL_POINTS);
-		EnumCatagoryTable.SetElementWithLiteral("GL_LINES", GL_LINES);
-		EnumCatagoryTable.SetElementWithLiteral("GL_TRIANGLES", GL_TRIANGLES);
-
-		EnumsTable.SetSubtable("OpenGLDrawModes", EnumCatagoryTable);
+		Context.SetTableField<lua_Integer>(-2, "GL_POINTS", GL_POINTS);
+		Context.SetTableField<lua_Integer>(-2, "GL_LINES", GL_LINES);
+		Context.SetTableField<lua_Integer>(-2, "GL_TRIANGLES", GL_TRIANGLES);
 	}
 }
 

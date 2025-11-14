@@ -151,17 +151,16 @@ namespace Game::Enemies {
 
             if (!lua_isstring(Context, -1)) {
 
-                lua_pop(Context, 2);
+                lua_settop(Context, 0);
                 lua_pushnil(Context);
                 return 1;
             }
 
             const char* RequiringString = lua_tostring(Context, -1);
-
             if (lua_istable(Context, lua_gettable(Context, -2))) {
                 return 1;
             }
-             
+            
             const size_t ClassFileNameSize = std::strlen("EnemyClasses\\") + std::strlen(RequiringString) + std::strlen(".lua") + 1;
             auto ClassFileName = std::make_unique<char>(ClassFileNameSize);
             
@@ -185,6 +184,7 @@ namespace Game::Enemies {
             }
 
             lua_setfield(Context, -2, RequiringString);
+            lua_getfield(Context, -1, RequiringString);
 
             return 1;
             });

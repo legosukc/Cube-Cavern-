@@ -82,6 +82,9 @@
     <Filter Include="Source Files\Modules">
       <UniqueIdentifier>{957a6aa7-034c-4573-8e7d-a0b06a7f70f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LuaLibraries\OpenGL">
+      <UniqueIdentifier>{c760e39d-3c10-4c7a-9191-fe364c1c5f47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -365,14 +368,59 @@
     <ClInclude Include="LuaHelper.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enums\OpenGLBuffers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enums\OpenGLOperations.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Enums\OpenGLShaderTypes.hpp">
       <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLBuffers.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\OpenGLOperations.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\EnumBase.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\table.hpp">
+      <Filter>Header Files\LuaLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\LibraryBase.hpp">
+      <Filter>Header Files\LuaLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\OpenGL\VertexArray.hpp">
+      <Filter>Header Files\LuaLibraries\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\OpenGL\BufferBase.hpp">
+      <Filter>Header Files\LuaLibraries\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\OpenGL\VertexBuffer.hpp">
+      <Filter>Header Files\LuaLibraries\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\OpenGL\ElementBuffer.hpp">
+      <Filter>Header Files\LuaLibraries\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\OpenGL\Shader.hpp">
+      <Filter>Header Files\LuaLibraries\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\OpenGL\Program.hpp">
+      <Filter>Header Files\LuaLibraries\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\OpenGL\Wrappers.hpp">
+      <Filter>Header Files\LuaLibraries\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherClasses\Array.hpp">
+      <Filter>Header Files\OtherClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\MetatableBase.hpp">
+      <Filter>Header Files\LuaLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\task.hpp">
+      <Filter>Header Files\LuaLibraries</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaLibraries\Additions.hpp">
+      <Filter>Header Files\LuaLibraries</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +487,15 @@
     <None Include="Release\Modules\ObjectAuthorityClass.lua">
       <Filter>Source Files\Modules</Filter>
     </None>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
+    <None Include="Release\ItemClasses\Stick.lua">
+      <Filter>Source Files\ItemClasses</Filter>
+    </None>
+    <None Include="Release\ItemClasses\Rock.lua">
+      <Filter>Source Files\ItemClasses</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Release\textures\missing.bmp">
@@ -450,5 +507,8 @@
     <Image Include="Release\textures\test.bmp">
       <Filter>Resource Files\textures</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="UNLICENSE.txt" />
   </ItemGroup>
 </Project>

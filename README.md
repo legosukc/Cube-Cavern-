@@ -2,16 +2,14 @@
 
 brought to you by the mr washee washees cube cavern guy (yeah i'm, pretty much famous, you must already know me.)
 
-wanted to name this repo "Cube Cavern Cum Engine" but for once in my life, take something seriously.
+also wanted to name this "the real c++" as a reference to the misleading c++ cube cavern engine on roblox (i originally thought it was some kinda c++ (programming language) interpreter on roblox when i first saw it)
 
-haha im sooo funny like im kinda crazy with this whole humor thing
-
-also wanted to name this "the real c++" as reference to the misleading c++ cube cavern engine on roblox (i originally thought it was some kinda c++ interpreter on roblox when i first saw it)
-
-now that i mentioned it, the code structure is inspired by the cube cavern+ engine (i refer c++ as cube cavern+)
+now that i mentioned it, the code structure is inspired by the cube cavern+ engine (i refer to the c++ cc engine by Elyzzia as cube cavern+)
 
 
 Written in C++, using SDL2 and OpenGL, GLAD as the OpenGL function loader.
+
+Lua is used for game logic
 
 now, now. my C++ might be a little horrid, but i don't have all that much experience with writing CLEAN C++ code, this is the first time i've bothered to try.
 
@@ -26,23 +24,28 @@ welcome to inheritance hell.
 ## TODO
 
 - kill myself (POSTPONED)
-- lua support
+- lua support (this is the branch for it bud!)
 - lil enemy guys
 - interactables
+- multiplayer? (No)
 - literally everything oh my goddddd.
 
 - ![alt text](https://github.com/legosukc/Cube-Cavern-/blob/master/awesomesauce/ohmygodbruh.jpg?raw=true)
 
 ## [Building]
+todo: this
 
 uhh yeah go get SDL2 from 'ere: https://www.libsdl.org
-glad from here: 
 
-pooshit
+glad from here: 
 
 too lazy to write somethin here
 
 you're on your own (shouldn't be too hard to figure out.)\
+\
+\
+\
+\
 \
 \
 \

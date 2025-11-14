@@ -27,27 +27,24 @@
 
 namespace GLClasses {
 
-    constexpr size_t sizeofGLType(GLenum GLType) {
-        switch (GLType) {
+    constexpr size_t sizeofGLType(GLenum Enum) {
 
-            case GL_BYTE:
-                return sizeof(GLbyte);
-            case GL_SHORT:
-                return sizeof(GLshort);
-            case GL_INT:
-                return sizeof(GLint);
+        switch (Enum) {
 
+            case GL_BYTE: [[fallthrough]]
             case GL_UNSIGNED_BYTE:
-                return sizeof(GLubyte);
-            case GL_UNSIGNED_SHORT:
-                return sizeof(GLushort);
-            case GL_UNSIGNED_INT:
-                return sizeof(GLuint);
+                return 1;
 
-            case GL_HALF_FLOAT:                
-                return sizeof(GLhalf);
+            case GL_SHORT: [[fallthrough]]
+            case GL_UNSIGNED_SHORT: [[fallthrough]]
+            case GL_HALF_FLOAT:
+                return 2;
+
+            case GL_INT: [[fallthrough]]
+            case GL_UNSIGNED_INT: [[fallthrough]]
             case GL_FLOAT:
-                return sizeof(GLfloat);
+                return 4;
+
             case GL_DOUBLE:
                 return sizeof(GLdouble);
         }
@@ -161,7 +158,7 @@ namespace GLClasses {
             glBindTexture(GL_TEXTURE_2D, 0);
         }
 
-        SDL_FORCE_INLINE ~Texture() {
+        inline ~Texture() {
             glDeleteTextures(1, &this->TextureObject);
         }
 
@@ -576,22 +573,22 @@ namespace GLClasses {
         }
 
 
-        inline void UniformBlockBinding(GLuint BlockIndex, GLuint Binding) const {
+        inline void UniformBlockBinding(GLuint BlockIndex, GLuint Binding) {
             glUniformBlockBinding(this->glProgram, BlockIndex, Binding);
         }
-        inline void UniformBlockBinding(GLuint BlockIndex, const GLClasses::UniformBuffer& UniformBuffer) const {
+        inline void UniformBlockBinding(GLuint BlockIndex, const GLClasses::UniformBuffer& UniformBuffer) {
             this->UniformBlockBinding(BlockIndex, UniformBuffer.BufferIndex);
         }
 
-        inline void UniformBlockBinding(const char* BlockName, GLuint Binding) const {
+        inline void UniformBlockBinding(const char* BlockName, GLuint Binding) {
             this->UniformBlockBinding(this->GetUniformBlockIndex(BlockName), Binding);
         }
-        inline void UniformBlockBinding(const char* BlockName, const GLClasses::UniformBuffer& UniformBuffer) const {
+        inline void UniformBlockBinding(const char* BlockName, const GLClasses::UniformBuffer& UniformBuffer) {
             this->UniformBlockBinding(BlockName, UniformBuffer.BufferIndex);
         }
 
 
-        inline GLint GetUniformLocation(const char* UniformName) const {
+        inline GLint GetUniformLocation(const char* UniformName) {
             return glGetUniformLocation(this->glProgram, UniformName);
         }
 
@@ -599,7 +596,7 @@ namespace GLClasses {
         static inline void IntSetUniform(GLint UniformID, GLint SetTo) {
             glUniform1i(UniformID, SetTo);
         }
-        inline void IntSetUniform(const char* UniformName, GLint SetTo) const {
+        inline void IntSetUniform(const char* UniformName, GLint SetTo) {
             glUniform1i(this->GetUniformLocation(UniformName), SetTo);
         }
 
@@ -607,7 +604,7 @@ namespace GLClasses {
         static inline void UintSetUniform(GLint UniformID, GLuint SetTo) {
             glUniform1ui(UniformID, SetTo);
         }
-        inline void UintSetUniform(const char* UniformName, GLuint SetTo) const {
+        inline void UintSetUniform(const char* UniformName, GLuint SetTo) {
             glUniform1ui(this->GetUniformLocation(UniformName), SetTo);
         }
 
@@ -615,7 +612,7 @@ namespace GLClasses {
         static inline void FloatSetUniform(GLint UniformID, GLfloat SetTo) {
             glUniform1f(UniformID, SetTo);
         }
-        inline void FloatSetUniform(const char* UniformName, GLfloat SetTo) const {
+        inline void FloatSetUniform(const char* UniformName, GLfloat SetTo) {
             glUniform1f(this->GetUniformLocation(UniformName), SetTo);
         }
 
@@ -623,7 +620,7 @@ namespace GLClasses {
         static inline void DoubleSetUniform(GLint UniformID, GLdouble SetTo) {
             glUniform1d(UniformID, SetTo);
         }
-        inline void DoubleSetUniform(const char* UniformName, GLdouble SetTo) const {
+        inline void DoubleSetUniform(const char* UniformName, GLdouble SetTo) {
             glUniform1d(this->GetUniformLocation(UniformName), SetTo);
         }
 
@@ -640,7 +637,7 @@ namespace GLClasses {
         static inline void Mat4SetUniform(GLint UniformID, const glm::mat4& SetTo) {
             glUniformMatrix4fv(UniformID, 1, GL_FALSE, &SetTo[0][0]);
         }
-        inline void Mat4SetUniform(const char* UniformName, const glm::mat4& SetTo) const {
+        inline void Mat4SetUniform(const char* UniformName, const glm::mat4& SetTo) {
             this->Mat4SetUniform(this->GetUniformLocation(UniformName), SetTo);
         }
 
@@ -649,7 +646,7 @@ namespace GLClasses {
         static inline void SetTextureBinding(GLint TextureUniformID, GLint SetBindingTo) {
             glUniform1i(TextureUniformID, SetBindingTo);
         }
-        inline void SetTextureBinding(const char* TextureUniformName, GLint SetBindingTo) const {
+        inline void SetTextureBinding(const char* TextureUniformName, GLint SetBindingTo) {
             this->IntSetUniform(TextureUniformName, SetBindingTo);
         }
 

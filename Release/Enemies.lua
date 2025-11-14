@@ -1,7 +1,7 @@
 
 local ParentClass = Assets.Modules.ObjectAuthorityClass.new()
 
-local class = setmetatable({}, ParentClass)
+local class = ParentClass --setmetatable({}, ParentClass)
 
 
 local EnemyClasses = Assets.EnemyClasses

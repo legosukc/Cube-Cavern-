@@ -1,43 +1,41 @@
 #ifndef _ENUMS_OPENGLBUFFERS
 #define _ENUMS_OPENGLBUFFERS
 
+#include "EnumBase.hpp"
+#include "../LuaClasses/LuaContext.hpp"
+
+extern "C" {
+#include <lua-5.4.2/lua.h>
+}
+
 #include <glad/glad.h>
 
-#include "../LuaClasses/LuaContext.hpp"
-#include "../LuaClasses/LuaTable.hpp"
-#include "../LuaClasses/LuaGlobalTable.hpp"
+namespace Enums {
 
-namespace Enums::OpenGLBuffers {
+	struct OpenGLBuffers : public Enums::EnumBase {
 
-	constexpr inline bool IsValidEnum(GLenum Enum) {
+		static inline const char* EnumCatagoryName = "OpenGLBuffers";
+		static inline const size_t ElementCount = 4;
 
-		switch (Enum) {
+		template<typename T>
+		constexpr static inline bool IsValidEnum(T Enum);
 
-			case GL_VERTEX_ARRAY:
-				return true;
-			case GL_ARRAY_BUFFER:
-				return true;
-			case GL_ELEMENT_ARRAY_BUFFER:
-				return true;
-			case GL_UNIFORM_BUFFER:
-				return true;
-		}
+		static inline void AddToLuaTable(LuaClasses::LuaContext& Context);
+	};
 
-		return false;
+	template<typename T>
+	constexpr bool OpenGLBuffers::IsValidEnum(T Enum) {
+		return (Enum == GL_VERTEX_ARRAY) || (Enum == GL_ARRAY_BUFFER)
+			|| (Enum == GL_ELEMENT_ARRAY_BUFFER) || (Enum == GL_UNIFORM_BUFFER);
 	}
 
-	inline void AddToLuaTable(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
+	void OpenGLBuffers::AddToLuaTable(LuaClasses::LuaContext& Context) {
 
-		LuaClasses::LuaTable EnumCatagoryTable(&Context, 0, 4);
+		Context.SetTableField<lua_Integer>(-2, "GL_VERTEX_ARRAY", GL_VERTEX_ARRAY);
+		Context.SetTableField<lua_Integer>(-2, "GL_ARRAY_BUFFER", GL_ARRAY_BUFFER);
+		Context.SetTableField<lua_Integer>(-2, "GL_ELEMENT_ARRAY_BUFFER", GL_ELEMENT_ARRAY_BUFFER);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_VERTEX_ARRAY", GL_VERTEX_ARRAY);
-		EnumCatagoryTable.SetElementWithLiteral("GL_ARRAY_BUFFER", GL_ARRAY_BUFFER);
-
-		EnumCatagoryTable.SetElementWithLiteral("GL_ELEMENT_ARRAY_BUFFER", GL_ELEMENT_ARRAY_BUFFER);
-		
-		EnumCatagoryTable.SetElementWithLiteral("GL_UNIFORM_BUFFER", GL_UNIFORM_BUFFER);
-
-		EnumsTable.SetSubtable("OpenGLBuffers", EnumCatagoryTable);
+		Context.SetTableField<lua_Integer>(-2, "GL_UNIFORM_BUFFER", GL_UNIFORM_BUFFER);
 	}
 }
 

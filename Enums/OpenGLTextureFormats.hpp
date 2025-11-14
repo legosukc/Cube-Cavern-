@@ -1,29 +1,40 @@
 #ifndef _ENUMS_OPENGLTEXTUREFORMATS
 #define _ENUMS_OPENGLTEXTUREFORMATS
 
+#include "EnumBase.hpp"
+#include "../LuaClasses/LuaContext.hpp"
+
+extern "C" {
+#include <lua-5.4.2/lua.h>
+}
+
 #include <glad/glad.h>
 
-#include "../LuaClasses/LuaContext.hpp"
-#include "../LuaClasses/LuaTable.hpp"
-#include "../LuaClasses/LuaGlobalTable.hpp"
+namespace Enums {
 
-namespace Enums::OpenGLTextureFormats {
+	struct OpenGLTextureFormats : public Enums::EnumBase {
 
-	constexpr inline bool IsValidEnum(GLenum Enum) {
+		static inline const char* EnumCatagoryName = "OpenGLTextureFormats";
+		static inline const size_t ElementCount = 4;
+
+		template<typename T>
+		constexpr static inline bool IsValidEnum(T Enum);
+
+		static inline void AddToLuaTable(LuaClasses::LuaContext& Context);
+	};
+
+	template<typename T>
+	constexpr bool OpenGLTextureFormats::IsValidEnum(T Enum) {
 		return (Enum == GL_RGBA) || (Enum == GL_RGB) || (Enum == GL_RG) || (Enum == GL_R);
 	}
 
-	inline void AddToLuaTable(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
+	void OpenGLTextureFormats::AddToLuaTable(LuaClasses::LuaContext& Context) {
 
-		LuaClasses::LuaTable EnumCatagoryTable(&Context, 0, 4);
+		Context.SetTableField<lua_Integer>(-2, "GL_RGBA", GL_RGBA);
+		Context.SetTableField<lua_Integer>(-2, "GL_RGB", GL_RGB);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_RGBA", GL_RGBA);
-		EnumCatagoryTable.SetElementWithLiteral("GL_RGB", GL_RGB);
-
-		EnumCatagoryTable.SetElementWithLiteral("GL_RG", GL_RG);
-		EnumCatagoryTable.SetElementWithLiteral("GL_R", GL_R);
-
-		EnumsTable.SetSubtable("OpenGLTextureFormats", EnumCatagoryTable);
+		Context.SetTableField<lua_Integer>(-2, "GL_RG", GL_RG);
+		Context.SetTableField<lua_Integer>(-2, "GL_R", GL_R);
 	}
 }
 

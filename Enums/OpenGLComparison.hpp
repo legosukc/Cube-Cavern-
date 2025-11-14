@@ -1,35 +1,46 @@
 #ifndef _ENUMS_OPENGLCOMPARISON
 #define _ENUMS_OPENGLCOMPARISON
 
+#include "EnumBase.hpp"
+#include "../LuaClasses/LuaContext.hpp"
+
+extern "C" {
+#include <lua-5.4.2/lua.h>
+}
+
 #include <glad/glad.h>
 
-#include "../LuaClasses/LuaContext.hpp"
-#include "../LuaClasses/LuaTable.hpp"
-#include "../LuaClasses/LuaGlobalTable.hpp"
+namespace Enums {
 
-namespace Enums::OpenGLComparison {
+	struct OpenGLComparison : public Enums::EnumBase {
 
-	constexpr inline bool IsValidEnum(GLenum Enum) {
+		static inline const char* EnumCatagoryName = "OpenGLComparison";
+		static inline const size_t ElementCount = 8;
+
+		template<typename T>
+		constexpr static inline bool IsValidEnum(T Enum);
+
+		static inline void AddToLuaTable(LuaClasses::LuaContext& Context);
+	};
+
+	template<typename T>
+	constexpr bool OpenGLComparison::IsValidEnum(T Enum) {
 		return (Enum >= GL_NEVER) && (Enum <= GL_ALWAYS);
 	}
 
-	inline void AddToLuaTable(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
+	void OpenGLComparison::AddToLuaTable(LuaClasses::LuaContext& Context) {
 
-		LuaClasses::LuaTable EnumCatagoryTable(&Context, 0, 8);
+		Context.SetTableField<lua_Integer>(-2, "GL_NEVER", GL_NEVER);
+		Context.SetTableField<lua_Integer>(-2, "GL_LESS", GL_LESS);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_NEVER", GL_NEVER);
-		EnumCatagoryTable.SetElementWithLiteral("GL_LESS", GL_LESS);
+		Context.SetTableField<lua_Integer>(-2, "GL_EQUAL", GL_EQUAL);
+		Context.SetTableField<lua_Integer>(-2, "GL_LEQUAL", GL_LEQUAL);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_EQUAL", GL_EQUAL);
-		EnumCatagoryTable.SetElementWithLiteral("GL_LEQUAL", GL_LEQUAL);
+		Context.SetTableField<lua_Integer>(-2, "GL_GREATER", GL_GREATER);
+		Context.SetTableField<lua_Integer>(-2, "GL_NOTEQUAL", GL_NOTEQUAL);
 
-		EnumCatagoryTable.SetElementWithLiteral("GL_GREATER", GL_GREATER);
-		EnumCatagoryTable.SetElementWithLiteral("GL_NOTEQUAL", GL_NOTEQUAL);
-
-		EnumCatagoryTable.SetElementWithLiteral("GL_GEQUAL", GL_GEQUAL);
-		EnumCatagoryTable.SetElementWithLiteral("GL_ALWAYS", GL_ALWAYS);
-
-		EnumsTable.SetSubtable("OpenGLComparison", EnumCatagoryTable);
+		Context.SetTableField<lua_Integer>(-2, "GL_GEQUAL", GL_GEQUAL);
+		Context.SetTableField<lua_Integer>(-2, "GL_ALWAYS", GL_ALWAYS);
 	}
 }
 

@@ -1,40 +1,64 @@
 #ifndef _ENUMS_ITEMTYPES
 #define _ENUMS_ITEMTYPES
 
+#include "EnumBase.hpp"
 #include "../LuaClasses/LuaContext.hpp"
-#include "../LuaClasses/LuaTable.hpp"
-#include "../LuaClasses/LuaGlobalTable.hpp"
 
-namespace Enums::ItemTypes {
+#include "../LuaHelper.hpp"
 
-	enum ItemTypesEnum {
-		Item,
-		Pickup,
+extern "C" {
+#include <lua-5.4.2/lua.h>
+}
 
-		Weapon,
-		Melee,
-		Ranged,
-		Magic,
+namespace Enums {
+
+	struct ItemTypes : public Enums::EnumBase {
+				
+		static inline const char* Name = "ItemTypes";
+		//static inline const size_t ElementCount = 6;
+
+		enum ItemTypesEnum {
+			Item,
+			Pickup,
+
+			Weapon,
+			Melee,
+			Ranged,
+			Magic,
+		};
+
+		static inline ElementType Entries[] = {
+			{"Item", Item},
+			{"Pickup", Pickup},
+
+			{"Weapon", Weapon},
+			{"Melee", Melee},
+			{"Ranged", Ranged},
+			{"Magic", Magic},
+		};
+
+		template<typename T>
+		constexpr static inline bool IsValidEnum(T Enum);
+
+		//static inline void AddToLuaTable(LuaClasses::LuaContext& Context);
 	};
 
-	constexpr inline bool IsValidEnum(ItemTypesEnum Enum) {
-		return (Enum >= ItemTypesEnum::Item) && (Enum <= ItemTypesEnum::Magic);
+	template<typename T>
+	constexpr bool ItemTypes::IsValidEnum(T Enum) {
+		return Enum <= ItemTypes::Magic;
 	}
+	/*
+	void ItemTypes::AddToLuaTable(LuaClasses::LuaContext& Context) {
 
-	inline void AddToLuaTable(LuaClasses::LuaContext& Context, LuaClasses::LuaGlobalTable& EnumsTable) {
+		Context.SetTableField<lua_Integer>(-2, "Item",	 ItemTypes::Item);
+		Context.SetTableField<lua_Integer>(-2, "Pickup", ItemTypes::Pickup);
 
-		LuaClasses::LuaTable EnumsItemTypesTable(&Context, 0, 6);
+		Context.SetTableField<lua_Integer>(-2, "Weapon", ItemTypes::Weapon);
 
-		EnumsItemTypesTable.SetElementWithLiteral("Item", Enums::ItemTypes::Item);
-		EnumsItemTypesTable.SetElementWithLiteral("Pickup", Enums::ItemTypes::Pickup);
-
-		EnumsItemTypesTable.SetElementWithLiteral("Weapon", Enums::ItemTypes::Weapon);
-		EnumsItemTypesTable.SetElementWithLiteral("Melee", Enums::ItemTypes::Melee);
-		EnumsItemTypesTable.SetElementWithLiteral("Ranged", Enums::ItemTypes::Ranged);
-		EnumsItemTypesTable.SetElementWithLiteral("Magic", Enums::ItemTypes::Magic);
-
-		EnumsTable.SetSubtable("ItemTypes", EnumsItemTypesTable);
-	}
+		Context.SetTableField<lua_Integer>(-2, "Melee",  ItemTypes::Melee);
+		Context.SetTableField<lua_Integer>(-2, "Ranged", ItemTypes::Ranged);
+		Context.SetTableField<lua_Integer>(-2, "Magic",  ItemTypes::Magic);
+	}*/
 }
 
 #endif

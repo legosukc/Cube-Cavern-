@@ -12,11 +12,11 @@ namespace LuaClasses {
     public:
 
         inline LuaTable(LuaClasses::LuaContext* Context, int PreallocateIndexes = 0, int PreallocateKeyElements = 0);
-        inline LuaTable(LuaTableObject Table, LuaClasses::LuaContext* Context);
-
-        inline void PushOntoStack();
+        LuaTable(LuaTableObject Table, LuaClasses::LuaContext* Context);
 
         LuaTableObject TableObject;
+
+        inline void PushOntoStack();
     };
 
 
@@ -32,6 +32,7 @@ namespace LuaClasses {
         this->AttachedContext = Context;
 
         if (!Context->IsTable(Table)) {
+            // TODO: this
             std::cerr << "not a fucking table" << std::endl
                 << "line: " << __LINE__ << std::endl
                 << "file: " << __FILE__ << std::endl;

@@ -180,6 +180,8 @@
     <ClCompile Include="OpenGLObjects\TexturedModelBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="define.h" />
+    <ClInclude Include="Enums\EnumBase.hpp" />
     <ClInclude Include="Enums\Enums.hpp" />
     <ClInclude Include="Enums\ItemTypeEnums.hpp" />
     <ClInclude Include="Enums\OpenGLBuffers.hpp" />
@@ -251,8 +253,20 @@
     <ClInclude Include="LuaClasses\LuaUpvalue.hpp" />
     <ClInclude Include="LuaDebug.hpp" />
     <ClInclude Include="LuaHelper.hpp" />
+    <ClInclude Include="LuaLibraries\Additions.hpp" />
     <ClInclude Include="LuaLibraries\buffer.hpp" />
+    <ClInclude Include="LuaLibraries\LibraryBase.hpp" />
+    <ClInclude Include="LuaLibraries\MetatableBase.hpp" />
     <ClInclude Include="LuaLibraries\OpenGL.hpp" />
+    <ClInclude Include="LuaLibraries\OpenGL\BufferBase.hpp" />
+    <ClInclude Include="LuaLibraries\OpenGL\ElementBuffer.hpp" />
+    <ClInclude Include="LuaLibraries\OpenGL\Program.hpp" />
+    <ClInclude Include="LuaLibraries\OpenGL\Shader.hpp" />
+    <ClInclude Include="LuaLibraries\OpenGL\VertexArray.hpp" />
+    <ClInclude Include="LuaLibraries\OpenGL\VertexBuffer.hpp" />
+    <ClInclude Include="LuaLibraries\OpenGL\Wrappers.hpp" />
+    <ClInclude Include="LuaLibraries\table.hpp" />
+    <ClInclude Include="LuaLibraries\task.hpp" />
     <ClInclude Include="LuaPreprocessor.hpp" />
     <ClInclude Include="LuaTypes.h" />
     <ClInclude Include="LuauClasses\BindableEvent.hpp" />
@@ -308,6 +322,7 @@
     </ClInclude>
     <ClInclude Include="OpenGLObjects\ParentedTexturedModelBase.hpp" />
     <ClInclude Include="OpenGLObjects\TexturedModelBase.hpp" />
+    <ClInclude Include="OtherClasses\Array.hpp" />
     <ClInclude Include="OtherClasses\ExpandableArray.hpp" />
     <ClInclude Include="OtherClasses\GLClasses.hpp" />
     <ClInclude Include="OtherClasses\SmartPointer.hpp" />
@@ -327,6 +342,8 @@
     <None Include="Release\ItemClasses\Dagger.lua" />
     <None Include="Release\ItemClasses\ItemBase.lua" />
     <None Include="Release\ItemClasses\NoWeapon.lua" />
+    <None Include="Release\ItemClasses\Rock.lua" />
+    <None Include="Release\ItemClasses\Stick.lua" />
     <None Include="Release\ItemClasses\WeaponBase.lua" />
     <None Include="Release\Items.lua" />
     <None Include="Release\Modules\ObjectAuthorityClass.lua" />
