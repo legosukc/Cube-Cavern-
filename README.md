@@ -1,9 +1,9 @@
 # lua-branch is currently what's being worked on.
 
 
-# wow another fuckin cube cavern engine just what we needed dude.
+# wow another cube cavern engine just what we needed dude.
 
-brought to you by the mr washee washees cube cavern guy (yeah i'm, pretty much famous, you must already know me.)
+brought to you by the mr washee washees cube cavern guy (yeah i'm pretty much famous you must already know me.)
 
 wanted to name this "the real c++" as reference to the misleading c++ cube cavern engine on roblox (i originally thought it was some kinda c++ interpreter on roblox when i first saw it)
 
